@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Juice Showcase</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- SVG icons can be included directly or via simple inline SVGs -->
+    <style>
+        /* New Creative About Section */
+        .creative-about {
+            position: relative;
+            padding: 8rem 2rem;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 80vh;
+        }
+
+        .about-bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: blur(5px) brightness(0.9);
+        }
+
+        .about-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.85), rgba(217, 28, 92, 0.85));
+            z-index: 2;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .creative-about-container {
+            position: relative;
+            z-index: 3;
+            max-width: 1300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-collage {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+
+        .collage-glass-panel {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            transform: rotate(-5deg);
+        }
+
+        .rotating-badge {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+            animation: rotate 15s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .collage-bottle {
+            position: relative;
+            height: 120%;
+            z-index: 3;
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5));
+        }
+
+        .collage-fruit-1 {
+            position: absolute;
+            width: 120px;
+            top: 50px;
+            right: 20px;
+            z-index: 4;
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3));
+        }
+
+        .collage-fruit-2 {
+            position: absolute;
+            width: 100px;
+            bottom: 80px;
+            left: 30px;
+            z-index: 4;
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3));
+        }
+
+        .creative-text-panel {
+            flex: 1;
+            position: relative;
+        }
+
+        .watermark-text {
+            position: absolute;
+            top: -80px;
+            left: -50px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 15rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03);
+            z-index: 0;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-accent {
+            margin-bottom: 1.5rem;
+        }
+
+        .opacity-80 {
+            opacity: 0.8;
+        }
+
+        .about-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pulse-btn {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(247, 147, 30, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(247, 147, 30, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(247, 147, 30, 0); }
+        }
+
+        .play-btn-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+        }
+
+        .play-btn-wrapper:hover .play-btn {
+            background: white;
+        }
+
+        .play-btn-wrapper:hover .play-btn svg {
+            fill: #F7931E;
+        }
+
+        .play-btn-wrapper span {
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- The 3D Interactive Showcase Section -->
+    <section id="app">
+        <div id="background-container">
+            <!-- Background images dynamically added here -->
+        </div>
+
+        <div class="main-content">
+            <header>
+                <div class="logo">
+                    <img src="./assets/images/fisto-logo.svg" alt="FIST-O" class="logo-img">
+                </div>
+                
+                <nav class="nav-pill normal-nav">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Products</a>
+                    <a href="#" class="nav-link">Gallery</a>
+                    <a href="#" class="nav-link">Contact Us</a>
+                    
+                    <div class="nav-btn-cart">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <span>Cart</span>
+                        <div class="badge">2</div>
+                    </div>
+                </nav>
+
+                <div class="mobile-header-cta">
+                    <button class="add-to-cart-btn" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 50px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="14" height="14" style="margin-right: 4px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        CART
+                    </button>
+                </div>
+            </header>
+
+            <div class="showcase">
+                <div class="wheel-container" id="wheel-container">
+                    <!-- Cards generated by JS -->
+                </div>
+
+                <div class="stage-container">
+                    <img src="./assets/images/stone-stage-image.webp" alt="Stage" class="stage">
+                    <div class="bottle-wrapper">
+                        <!-- Two bottle images for smooth crossfade -->
+                        <img id="bottle-1" src="./assets/images/bottle-images/kiwi-bottle.webp" alt="Bottle" class="bottle active">
+                        <img id="bottle-2" src="" alt="Bottle" class="bottle">
+                        
+                        <!-- Decorative fruit images -->
+                        <img id="fruit-1" src="./assets/images/card-images/kiwi.png" alt="Fruit Decoration" class="bottle-fruit active">
+                        <img id="fruit-2" src="" alt="Fruit Decoration" class="bottle-fruit">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-center-action">
+                <div class="action-pill">
+                    <div class="glass-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M6 2L6 22 M18 2L18 22 M6 22 L18 22 M6 2 L18 2"></path><rect x="7" y="5" width="10" height="17"></rect></svg>
+                    </div>
+                    <div class="text-content">
+                        <h4>10.328</h4>
+                        <p>FRESH JUICES</p>
+                    </div>
+                    <div class="separator-line-center"></div>
+                    <button class="add-to-cart-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18" height="18"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        ADD TO CART
+                    </button>
+                </div>
+            </div>
+
+            <div class="bottom-left-info">
+                <div class="info-item">
+                    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M12 2C12 2 4 6 4 14C4 18.4 7.6 22 12 22C16.4 22 20 18.4 20 14C20 6 12 2 12 2Z"></path></svg></div>
+                    <p>100%<br>NATURAL</p>
+                </div>
+                <div class="separator-line"></div>
+                <div class="info-item">
+                    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg></div>
+                    <p>NO ADDED<br>SUGAR</p>
+                </div>
+                <div class="separator-line"></div>
+                <div class="info-item">
+                    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M11 21c-4.42 0-8-3.58-8-8 0-2.52 1.17-4.78 3-6.25V4h2v2.75C9.64 5.92 11.23 5.3 13 5.3c4.42 0 8 3.58 8 8s-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"></path><path d="M11 11h2v4h-2z"></path></svg></div>
+                    <p>RICH IN<br>VITAMINS</p>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+
+
+    <!-- About Us Section Redesigned -->
+    <section class="about-section creative-about reveal">
+        <!-- Abstract Video Background -->
+        <video autoplay muted loop playsinline class="about-bg-video">
+            <source src="./assets/videos/guava-fruit.mp4" type="video/mp4">
+        </video>
+        <div class="about-bg-overlay"></div>
+        
+        <div class="creative-about-container">
+            <!-- Left side: Collage -->
+            <div class="about-collage">
+                <div class="collage-glass-panel"></div>
+                <!-- Rotating Text Ring SVG -->
+                <div class="rotating-badge">
+                    <svg viewBox="0 0 100 100" width="200" height="200">
+                        <defs><path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" /></defs>
+                        <text font-size="11.5" font-family="'Oswald', sans-serif" font-weight="bold" fill="white" letter-spacing="3.5">
+                            <textPath href="#circlePath">100% ORGANIC • PURE FRESH •</textPath>
+                        </text>
+                    </svg>
+                </div>
+                <img src="./assets/images/bottle-images/guava-bottle.webp" alt="Guava Bottle" class="collage-bottle float-anim-1">
+                <img src="./assets/images/card-images/guava-fruit.webp" alt="Guava" class="collage-fruit-1 float-anim-2">
+                <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry" class="collage-fruit-2 float-anim-3">
+            </div>
+
+            <!-- Right side: Content -->
+            <div class="about-content creative-text-panel">
+                <div class="watermark-text">PURE</div>
+                <div class="content-wrapper">
+                    <div class="icon-accent"><svg viewBox="0 0 24 24" width="40" height="40" stroke="#F7931E" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
+                    <h2 class="section-title text-white">REDEFINING<br><span style="color:#F7931E;">FRESHNESS</span></h2>
+                    <p class="text-white">We believe in the raw, unadulterated power of nature. FIST-O isn't just a juice; it's a vibrant lifestyle choice. Born from the desire to bring authentic taste without compromises.</p>
+                    <p class="text-white opacity-80">Cold-pressed. Never heated. Zero artificial sugars. Experience the ultimate vitality in every single drop.</p>
+                    <div class="about-actions">
+                        <button class="primary-btn pulse-btn">Discover Our Story</button>
+                        <div class="play-btn-wrapper">
+                            <div class="play-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M8 5v14l11-7z"></path></svg></div>
+                            <span class="text-white">See How We Make It</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section reveal">
+        <h2 class="section-title text-center">WHY CHOOSE US</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry"></div>
+                <h4>100% Organic</h4>
+                <p>Sourced directly from certified organic farms around the world.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><img src="./assets/images/card-images/mango-fruit.webp" alt="Mango"></div>
+                <h4>Zero Sugar</h4>
+                <p>No added sugars, artificial sweeteners, or hidden syrups.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><img src="./assets/images/card-images/dragon-fruit.webp" alt="Dragon Fruit"></div>
+                <h4>Cold Pressed</h4>
+                <p>Maximum nutrient retention through state-of-the-art cold press technology.</p>
+            </div>
+        </div>
+    </section>
+
+    </section>
+
+    <!-- Bestsellers Section -->
+    <section class="bestsellers-section reveal">
+        <h2 class="section-title text-center">OUR BESTSELLERS</h2>
+        <p class="section-subtitle text-center" style="margin-bottom: 3rem;">The crowd favorites that keep everyone coming back.</p>
+        <div class="bestsellers-container">
+            <div class="bestseller-item">
+                <div class="bestseller-bg" style="background-color: rgba(46, 49, 146, 0.08);"></div>
+                <img src="./assets/images/bottle-images/blueberry-bottle.webp" alt="Blueberry Juice" class="bestseller-bottle">
+                <img src="./assets/images/card-images/blueberry-fruit.webp" alt="Blueberry" class="bestseller-fruit float-anim-1">
+                <div class="bestseller-info">
+                    <h4>BLUEBERRY BURST</h4>
+                    <button class="bestseller-btn" style="color: #2E3192;">Add to Cart</button>
+                </div>
+            </div>
+            <div class="bestseller-item">
+                <div class="bestseller-bg" style="background-color: rgba(247, 147, 30, 0.08);"></div>
+                <img src="./assets/images/bottle-images/mango-bottle.webp" alt="Mango Juice" class="bestseller-bottle">
+                <img src="./assets/images/card-images/mango-fruit.webp" alt="Mango" class="bestseller-fruit float-anim-2">
+                <div class="bestseller-info">
+                    <h4>TROPICAL MANGO</h4>
+                    <button class="bestseller-btn" style="color: #F7931E;">Add to Cart</button>
+                </div>
+            </div>
+            <div class="bestseller-item">
+                <div class="bestseller-bg" style="background-color: rgba(193, 39, 45, 0.08);"></div>
+                <img src="./assets/images/bottle-images/pomogranate-bottle.webp" alt="Pomegranate Juice" class="bestseller-bottle">
+                <img src="./assets/images/card-images/pomegranate-fruit.webp" alt="Pomegranate" class="bestseller-fruit float-anim-3">
+                <div class="bestseller-info">
+                    <h4>POMEGRANATE SPARK</h4>
+                    <button class="bestseller-btn" style="color: #C1272D;">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section reveal">
+        <div class="process-container">
+            <div class="process-content">
+                <h2 class="section-title">THE COLD PRESS DIFFERENCE</h2>
+                <h3 class="section-subtitle" style="color: #8DC63F;">Retaining 100% of the Nutrients</h3>
+                <p>Traditional juicing methods use heat-producing blades that destroy vital enzymes and vitamins. Our hydraulic press extraction method carefully squeezes every drop of juice from the fresh produce, ensuring no heat is introduced.</p>
+                <p>This means you get brighter colors, richer flavors, and up to 5x the vitamins, minerals, and live enzymes compared to standard juices.</p>
+                <ul class="process-list">
+                    <li><svg viewBox="0 0 24 24" width="28" height="28" stroke="#8DC63F" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> No Heat Treatment</li>
+                    <li><svg viewBox="0 0 24 24" width="28" height="28" stroke="#8DC63F" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Zero Preservatives</li>
+                    <li><svg viewBox="0 0 24 24" width="28" height="28" stroke="#8DC63F" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% Raw Ingredients</li>
+                </ul>
+            </div>
+            <div class="process-video-wrapper">
+                <video autoplay muted loop playsinline class="process-video">
+                    <source src="./assets/videos/kiwi-fruit.mp4" type="video/mp4">
+                </video>
+                <div class="video-accent"></div>
+                <div class="video-shape"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section reveal">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" style="color: #F7931E;">1M+</div>
+                <div class="stat-label">Bottles Sold</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" style="color: #ED1C24;">100%</div>
+                <div class="stat-label">Organic</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" style="color: #8DC63F;">50+</div>
+                <div class="stat-label">Partner Farms</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" style="color: #C1272D;">0g</div>
+                <div class="stat-label">Added Sugar</div>
+            </div>
+        </div>
+        <!-- Decorative Shapes -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section reveal">
+        <h2 class="section-title text-center">WHAT THEY SAY</h2>
+        <p class="section-subtitle text-center" style="margin-bottom: 4rem;">Real stories from our healthy community.</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon" style="color: #F7931E;">"</div>
+                <p>"FIST-O completely changed my morning routine. The Tropical Mango is out of this world!"</p>
+                <h4>- Sarah J.</h4>
+                <div class="test-fruit-bg" style="background: #F7931E;"></div>
+                <img src="./assets/images/card-images/mango-fruit.webp" alt="Mango" class="test-fruit">
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon" style="color: #D91C5C;">"</div>
+                <p>"I've never tasted a juice so pure. You can literally feel the Dragon Fruit energy!"</p>
+                <h4>- Michael T.</h4>
+                <div class="test-fruit-bg" style="background: #D91C5C;"></div>
+                <img src="./assets/images/card-images/dragon-fruit.webp" alt="Dragon Fruit" class="test-fruit">
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon" style="color: #8DC63F;">"</div>
+                <p>"As an athlete, the fresh Kiwi blend gives me the perfect recovery boost after a workout."</p>
+                <h4>- Emma W.</h4>
+                <div class="test-fruit-bg" style="background: #8DC63F;"></div>
+                <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Kiwi" class="test-fruit">
+            </div>
+        </div>
+        <!-- Decorative Shapes -->
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </section>
+
+    <!-- Marquee Gallery Section -->
+    <section class="gallery-marquee-section">
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <!-- Set 1 -->
+                <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/mango-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/guava-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/dragon-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/orange-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/avacado-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/blueberry-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/watermelon-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/grape-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/pomegranate-fruit.webp" alt="Fruit">
+                <!-- Set 2 for infinite scroll -->
+                <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/mango-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/guava-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/dragon-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/orange-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/avacado-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/blueberry-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/watermelon-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/grape-fruit.webp" alt="Fruit">
+                <img src="./assets/images/card-images/pomegranate-fruit.webp" alt="Fruit">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section reveal">
+        <video autoplay muted loop playsinline class="contact-bg-video">
+            <source src="./assets/videos/orange-fruit.mp4" type="video/mp4">
+        </video>
+        <div class="contact-overlay"></div>
+        <div class="contact-content">
+            <h2 class="section-title text-white">GET IN TOUCH</h2>
+            <p class="text-white">Have questions about our juices or want to partner with us?</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit" class="primary-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="dummy-section footer-section">
+        <div class="dummy-content">
+            <h2>Taste the Nature</h2>
+            <p>Join our newsletter for fresh updates and exotic new flavors.</p>
+            <div class="newsletter-box">
+                <input type="email" placeholder="Your email address">
+                <button class="dummy-btn">Subscribe</button>
+            </div>
+            
+            <div class="social-icons" style="display: flex; justify-content: center; gap: 20px; margin-top: 3rem;">
+                <a href="#" style="color: white; transition: color 0.3s;" onmouseover="this.style.color='#F7931E'" onmouseout="this.style.color='white'">
+                    <!-- Facebook -->
+                    <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#" style="color: white; transition: color 0.3s;" onmouseover="this.style.color='#D91C5C'" onmouseout="this.style.color='white'">
+                    <!-- Instagram -->
+                    <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" style="color: white; transition: color 0.3s;" onmouseover="this.style.color='#1DA1F2'" onmouseout="this.style.color='white'">
+                    <!-- Twitter -->
+                    <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                </a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.7;">© 2026 FIST-O Tech Pvt Ltd. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
