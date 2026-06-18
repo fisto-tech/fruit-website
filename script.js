@@ -234,6 +234,59 @@ function reveal() {
 window.addEventListener("scroll", reveal);
 reveal(); // Trigger on load
 
+// ── Stat Counter Animation ──────────────────────────────────────────────────
+function animateCounter(el) {
+    if (el.dataset.animated) return;
+    el.dataset.animated = "true";
+
+    // If it's a text-only stat (e.g. "Zero"), just leave it
+    if (el.dataset.text) return;
+
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || "";
+    const duration = 1800; // ms
+    const steps = 60;
+    const stepTime = duration / steps;
+    let current = 0;
+
+    // For 1M+ bottles, show as "1M+" immediately but count up to it
+    const displayTarget = target >= 1000000 ? 1 : target;
+    const displaySuffix = target >= 1000000 ? "M+" : suffix;
+
+    const timer = setInterval(() => {
+        current += displayTarget / steps;
+        if (current >= displayTarget) {
+            el.textContent = displayTarget + displaySuffix;
+            clearInterval(timer);
+        } else {
+            el.textContent = Math.floor(current) + displaySuffix;
+        }
+    }, stepTime);
+}
+
+function triggerStatBars() {
+    document.querySelectorAll(".stat-item").forEach(item => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+            item.classList.add("active");
+            // Trigger bar fill via inline style
+            const fill = item.querySelector(".stat-bar-fill");
+            if (fill && !fill.dataset.animated) {
+                fill.dataset.animated = "true";
+                const w = fill.style.width;
+                fill.style.width = "0%";
+                setTimeout(() => { fill.style.width = w; }, 100);
+            }
+            // Trigger counter
+            const numEl = item.querySelector(".stat-number");
+            if (numEl) animateCounter(numEl);
+        }
+    });
+}
+
+window.addEventListener("scroll", triggerStatBars);
+triggerStatBars();
+
 // Preloader Logic using sessionStorage
 document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.getElementById("preloader");
