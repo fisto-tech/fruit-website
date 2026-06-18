@@ -40,7 +40,12 @@ window.addEventListener('resize', () => {
 function updateRadius() {
     // The user styled wheel-container at bottom: -30vw
     // By setting radius to a percentage of innerWidth, we simulate 'vw' units
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 500) {
+        // Reduced radius and raised wheel container to bring the cards perfectly close together
+        // fixing the disjointed alignment on mobile devices
+        radius = window.innerWidth * 1.05;
+    }
+    else if (window.innerWidth <= 768) {
         // Reduced radius and raised wheel container to bring the cards perfectly close together
         // fixing the disjointed alignment on mobile devices
         radius = window.innerWidth * 0.80;
@@ -228,3 +233,27 @@ function reveal() {
 }
 window.addEventListener("scroll", reveal);
 reveal(); // Trigger on load
+
+// Preloader Logic using sessionStorage
+document.addEventListener("DOMContentLoaded", () => {
+    const preloader = document.getElementById("preloader");
+    if (!preloader) return;
+
+    // Check if the preloader has already been shown in this session
+    if (sessionStorage.getItem("fistoPreloaderShown")) {
+        // If yes, hide it immediately without animation
+        preloader.style.display = "none";
+    } else {
+        // If no, show it and let it fade out after 2.5 seconds
+        setTimeout(() => {
+            preloader.classList.add("hidden");
+            // Set flag in session storage
+            sessionStorage.setItem("fistoPreloaderShown", "true");
+            
+            // Optionally remove from DOM after transition finishes
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 800); // matches the 0.8s CSS transition
+        }, 2500); // 2.5 seconds artificial loading time
+    }
+});

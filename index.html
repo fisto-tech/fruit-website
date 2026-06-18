@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <!-- SVG icons can be included directly or via simple inline SVGs -->
     <style>
         /* New Creative About Section */
@@ -252,9 +253,92 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
+        /* Responsive About Section */
+        @media (max-width: 991px) {
+            .creative-about-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            .about-collage {
+                height: 350px;
+            }
+            .about-actions {
+                justify-content: center;
+            }
+            .watermark-text {
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 8rem;
+            }
+        }
+
+        /* Preloader Styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .preloader-content {
+            text-align: center;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #F7931E;
+            border-bottom-color: #D91C5C;
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .preloader h2 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .preloader p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
+            animation: pulse-text 1.5s infinite;
+        }
+        @keyframes pulse-text {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="spinner"></div>
+            <img src="./assets/images/fisto-logo.svg" alt="FIST-O Logo" class="preloader-logo" style="width: 150px; margin-bottom: 1rem; filter: brightness(0) invert(1);">
+            <p>Extracting Freshness...</p>
+        </div>
+    </div>
 
 
     <!-- The 3D Interactive Showcase Section -->
@@ -270,11 +354,11 @@
                 </div>
                 
                 <nav class="nav-pill normal-nav">
-                    <a href="#" class="nav-link">Home</a>
-                    <a href="#" class="nav-link">About</a>
-                    <a href="#" class="nav-link">Products</a>
-                    <a href="#" class="nav-link">Gallery</a>
-                    <a href="#" class="nav-link">Contact Us</a>
+                    <a href="#app" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#products" class="nav-link">Products</a>
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                    <a href="#contact" class="nav-link">Contact Us</a>
                     
                     <div class="nav-btn-cart">
                         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
@@ -351,7 +435,7 @@
 
 
     <!-- About Us Section Redesigned -->
-    <section class="about-section creative-about">
+    <section id="about" class="about-section creative-about">
         <!-- Abstract Video Background -->
         <video autoplay muted loop playsinline class="about-bg-video">
             <source src="./assets/videos/guava-fruit.mp4" type="video/mp4">
@@ -426,7 +510,7 @@
     </section>
 
     <!-- Bestsellers Section -->
-    <section class="bestsellers-section">
+    <section id="products" class="bestsellers-section">
         <h2 class="section-title text-center reveal">OUR BESTSELLERS</h2>
         <p class="section-subtitle text-center reveal delay-1" style="margin-bottom: 3rem;">The crowd favorites that keep everyone coming back.</p>
         <div class="bestsellers-container">
@@ -460,34 +544,58 @@
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section class="process-section">
+    <!-- Process Section Redesigned -->
+    <section class="process-section process-bento">
         <div class="process-container">
-            <div class="process-content reveal">
+            <div class="process-header text-center reveal">
                 <h2 class="section-title">THE COLD PRESS DIFFERENCE</h2>
                 <h3 class="section-subtitle" style="color: #8DC63F;">Retaining Every Ounce of Goodness</h3>
-                <p>Unlike traditional juicing that uses heat-producing blades, our state-of-the-art cold press process gently extracts juice using hydraulic pressure.</p>
-                <ul class="process-list">
-                    <li class="reveal delay-1">
-                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="#8DC63F" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        Up to 5x more vitamins and enzymes
-                    </li>
-                    <li class="reveal delay-2">
-                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="#8DC63F" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        Zero oxidation for longer-lasting freshness
-                    </li>
-                    <li class="reveal delay-3">
-                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="#8DC63F" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        Richer, deeper, and more authentic flavor profiles
-                    </li>
-                </ul>
             </div>
-            <div class="process-video-container reveal delay-2">
-                <video autoplay muted loop playsinline class="process-video">
-                    <source src="./assets/videos/kiwi-fruit.mp4" type="video/mp4">
-                </video>
-                <div class="video-accent"></div>
-                <div class="video-shape"></div>
+            
+            <div class="bento-grid">
+                <!-- Large Video Tile -->
+                <div class="bento-item bento-video reveal delay-1">
+                    <video autoplay muted loop playsinline class="process-video">
+                        <source src="./assets/videos/kiwi-fruit.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                    <div class="video-text">
+                        <h4>Pure Extraction</h4>
+                        <p>No heat. No blades. Just raw hydraulic pressure.</p>
+                    </div>
+                </div>
+
+                <!-- Info Tile -->
+                <div class="bento-item bento-info reveal delay-2">
+                    <h4>Why Cold Press?</h4>
+                    <p>Unlike traditional juicing that uses heat-producing blades, our state-of-the-art cold press process gently extracts juice using hydraulic pressure. This preserves the cellular structure of the fruits.</p>
+                    <img src="./assets/images/card-images/kiwi-fruit.webp" class="bento-fruit float-anim-1" alt="Kiwi">
+                </div>
+
+                <!-- Feature Tiles -->
+                <div class="bento-item bento-feature reveal delay-3">
+                    <div class="bento-icon" style="background: rgba(141, 198, 63, 0.1); color: #8DC63F;">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h4>5x Nutrients</h4>
+                    <p>Up to 5x more vitamins and live enzymes.</p>
+                </div>
+
+                <div class="bento-item bento-feature reveal delay-4">
+                    <div class="bento-icon" style="background: rgba(247, 147, 30, 0.1); color: #F7931E;">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+                    </div>
+                    <h4>Zero Oxidation</h4>
+                    <p>No air exposure means longer-lasting freshness.</p>
+                </div>
+
+                <div class="bento-item bento-feature reveal delay-5">
+                    <div class="bento-icon" style="background: rgba(217, 28, 92, 0.1); color: #D91C5C;">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                    </div>
+                    <h4>Richer Flavor</h4>
+                    <p>Deeper, more authentic taste profiles in every sip.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -521,19 +629,47 @@
     <section class="testimonials-section">
         <h2 class="section-title text-center reveal">WHAT THEY SAY</h2>
         <p class="section-subtitle text-center reveal delay-1" style="margin-bottom: 4rem;">Real stories from our healthy community.</p>
-        <div class="testimonials-grid">
-            <div class="testimonial-card reveal delay-1">
-                <div class="quote-icon" style="color: #F7931E;">"</div>
-                <p>The Mango Tropical flavor is absolutely incredible. It tastes like it was just picked from the tree. No weird aftertaste, just pure fruit!</p>
-                <h4>- Sarah Jenkins</h4>
-                <div class="test-fruit-bg" style="background: rgba(247, 147, 30, 0.2);"></div>
-                <img src="./assets/images/card-images/mango-fruit.webp" class="test-fruit" alt="Mango">
+        <!-- Swiper -->
+        <div class="swiper testimonialSwiper reveal delay-2" style="max-width: 1200px; padding: 2rem 1rem 4rem;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon" style="color: #F7931E;">"</div>
+                        <p>The Mango Tropical flavor is absolutely incredible. It tastes like it was just picked from the tree. No weird aftertaste, just pure fruit!</p>
+                        <h4>- Sarah Jenkins</h4>
+                        <div class="test-fruit-bg" style="background: rgba(247, 147, 30, 0.2);"></div>
+                        <img src="./assets/images/card-images/mango-fruit.webp" class="test-fruit" alt="Mango">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon" style="color: #8DC63F;">"</div>
+                        <p>I start every morning with the Kiwi detox blend. The cold-pressed difference is real—you can taste the freshness and nutrients immediately.</p>
+                        <h4>- Marcus Chen</h4>
+                        <div class="test-fruit-bg" style="background: rgba(141, 198, 63, 0.2);"></div>
+                        <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Kiwi" class="test-fruit">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon" style="color: #D91C5C;">"</div>
+                        <p>Nothing artificial, just real strawberries. It's the perfect pre-workout drink. My kids love it too, which makes healthy eating so much easier!</p>
+                        <h4>- Elena Rodriguez</h4>
+                        <div class="test-fruit-bg" style="background: rgba(217, 28, 92, 0.2);"></div>
+                        <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry" class="test-fruit">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon" style="color: #ED1C24;">"</div>
+                        <p>The Pomegranate Spark is hands down the best juice I've ever had. Rich, deep flavor profile and no added sugar. A premium product.</p>
+                        <h4>- David Smith</h4>
+                        <div class="test-fruit-bg" style="background: rgba(237, 28, 36, 0.2);"></div>
+                        <img src="./assets/images/bottle-images/pomogranate-bottle.webp" alt="Pomegranate" class="test-fruit" style="width: 50px;">
+                    </div>
+                </div>
             </div>
-            <div class="testimonial-card reveal delay-2">
-                <div class="quote-icon" style="color: #8DC63F;">"</div>
-                <div class="test-fruit-bg" style="background: #8DC63F;"></div>
-                <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Kiwi" class="test-fruit">
-            </div>
+            <div class="swiper-pagination"></div>
         </div>
         <!-- Decorative Shapes -->
         <div class="shape shape-3"></div>
@@ -541,7 +677,7 @@
     </section>
 
     <!-- Marquee Gallery Section -->
-    <section class="gallery-marquee-section">
+    <section id="gallery" class="gallery-marquee-section">
         <div class="marquee-container">
             <div class="marquee-track">
                 <!-- Set 1 -->
@@ -573,7 +709,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section">
+    <section id="contact" class="contact-section">
         <video autoplay muted loop playsinline class="contact-bg-video">
             <source src="./assets/videos/orange-fruit.mp4" type="video/mp4">
         </video>
@@ -619,6 +755,31 @@
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        var swiper = new Swiper(".testimonialSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                },
+            },
+        });
+    </script>
 </body>
 </html>
