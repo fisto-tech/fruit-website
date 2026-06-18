@@ -51,6 +51,54 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Features Section Decorations */
+        .features-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .features-bg-text {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Oswald', sans-serif;
+            font-size: 18rem;
+            color: rgba(0,0,0,0.02);
+            font-weight: 800;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .feature-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            opacity: 0.4;
+        }
+        .feature-shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #F7931E;
+            top: -50px;
+            left: -100px;
+        }
+        .feature-shape-2 {
+            width: 400px;
+            height: 400px;
+            background: #D91C5C;
+            bottom: -150px;
+            right: -100px;
+        }
+        .feature-grid, .section-title {
+            position: relative;
+            z-index: 2;
+        }
 
         .creative-about-container {
             position: relative;
@@ -303,7 +351,7 @@
 
 
     <!-- About Us Section Redesigned -->
-    <section class="about-section creative-about reveal">
+    <section class="about-section creative-about">
         <!-- Abstract Video Background -->
         <video autoplay muted loop playsinline class="about-bg-video">
             <source src="./assets/videos/guava-fruit.mp4" type="video/mp4">
@@ -312,7 +360,7 @@
         
         <div class="creative-about-container">
             <!-- Left side: Collage -->
-            <div class="about-collage">
+            <div class="about-collage reveal">
                 <div class="collage-glass-panel"></div>
                 <!-- Rotating Text Ring SVG -->
                 <div class="rotating-badge">
@@ -329,7 +377,7 @@
             </div>
 
             <!-- Right side: Content -->
-            <div class="about-content creative-text-panel">
+            <div class="about-content creative-text-panel reveal delay-1">
                 <div class="watermark-text">PURE</div>
                 <div class="content-wrapper">
                     <div class="icon-accent"><svg viewBox="0 0 24 24" width="40" height="40" stroke="#F7931E" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
@@ -349,20 +397,27 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features-section reveal">
-        <h2 class="section-title text-center">WHY CHOOSE US</h2>
-        <div class="features-grid">
-            <div class="feature-card">
+    <section class="features-section">
+        <!-- New Background elements for fulfillment -->
+        <div class="features-bg-text">FEATURES</div>
+        <div class="feature-shape feature-shape-1"></div>
+        <div class="feature-shape feature-shape-2"></div>
+        <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Background Kiwi" class="floating-fruit" style="position:absolute; top:10%; left:5%; width:120px; opacity:0.6; z-index:1; filter:blur(2px);">
+        <img src="./assets/images/card-images/grape-fruit.webp" alt="Background Grape" class="floating-fruit" style="position:absolute; bottom:10%; right:5%; width:150px; opacity:0.6; z-index:1; filter:blur(3px);">
+
+        <h2 class="section-title text-center reveal" style="position:relative; z-index:2;">WHY CHOOSE US</h2>
+        <div class="features-grid" style="position:relative; z-index:2;">
+            <div class="feature-card reveal delay-1">
                 <div class="feature-icon"><img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry"></div>
                 <h4>100% Organic</h4>
                 <p>Sourced directly from certified organic farms around the world.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal delay-2">
                 <div class="feature-icon"><img src="./assets/images/card-images/mango-fruit.webp" alt="Mango"></div>
                 <h4>Zero Sugar</h4>
                 <p>No added sugars, artificial sweeteners, or hidden syrups.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal delay-3">
                 <div class="feature-icon"><img src="./assets/images/card-images/dragon-fruit.webp" alt="Dragon Fruit"></div>
                 <h4>Cold Pressed</h4>
                 <p>Maximum nutrient retention through state-of-the-art cold press technology.</p>
@@ -370,14 +425,12 @@
         </div>
     </section>
 
-    </section>
-
     <!-- Bestsellers Section -->
-    <section class="bestsellers-section reveal">
-        <h2 class="section-title text-center">OUR BESTSELLERS</h2>
-        <p class="section-subtitle text-center" style="margin-bottom: 3rem;">The crowd favorites that keep everyone coming back.</p>
+    <section class="bestsellers-section">
+        <h2 class="section-title text-center reveal">OUR BESTSELLERS</h2>
+        <p class="section-subtitle text-center reveal delay-1" style="margin-bottom: 3rem;">The crowd favorites that keep everyone coming back.</p>
         <div class="bestsellers-container">
-            <div class="bestseller-item">
+            <div class="bestseller-item reveal delay-1">
                 <div class="bestseller-bg" style="background-color: rgba(46, 49, 146, 0.08);"></div>
                 <img src="./assets/images/bottle-images/blueberry-bottle.webp" alt="Blueberry Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/blueberry-fruit.webp" alt="Blueberry" class="bestseller-fruit float-anim-1">
@@ -386,7 +439,7 @@
                     <button class="bestseller-btn" style="color: #2E3192;">Add to Cart</button>
                 </div>
             </div>
-            <div class="bestseller-item">
+            <div class="bestseller-item reveal delay-2">
                 <div class="bestseller-bg" style="background-color: rgba(247, 147, 30, 0.08);"></div>
                 <img src="./assets/images/bottle-images/mango-bottle.webp" alt="Mango Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/mango-fruit.webp" alt="Mango" class="bestseller-fruit float-anim-2">
@@ -395,7 +448,7 @@
                     <button class="bestseller-btn" style="color: #F7931E;">Add to Cart</button>
                 </div>
             </div>
-            <div class="bestseller-item">
+            <div class="bestseller-item reveal delay-3">
                 <div class="bestseller-bg" style="background-color: rgba(193, 39, 45, 0.08);"></div>
                 <img src="./assets/images/bottle-images/pomogranate-bottle.webp" alt="Pomegranate Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/pomegranate-fruit.webp" alt="Pomegranate" class="bestseller-fruit float-anim-3">
@@ -408,20 +461,28 @@
     </section>
 
     <!-- Process Section -->
-    <section class="process-section reveal">
+    <section class="process-section">
         <div class="process-container">
-            <div class="process-content">
+            <div class="process-content reveal">
                 <h2 class="section-title">THE COLD PRESS DIFFERENCE</h2>
-                <h3 class="section-subtitle" style="color: #8DC63F;">Retaining 100% of the Nutrients</h3>
-                <p>Traditional juicing methods use heat-producing blades that destroy vital enzymes and vitamins. Our hydraulic press extraction method carefully squeezes every drop of juice from the fresh produce, ensuring no heat is introduced.</p>
-                <p>This means you get brighter colors, richer flavors, and up to 5x the vitamins, minerals, and live enzymes compared to standard juices.</p>
+                <h3 class="section-subtitle" style="color: #8DC63F;">Retaining Every Ounce of Goodness</h3>
+                <p>Unlike traditional juicing that uses heat-producing blades, our state-of-the-art cold press process gently extracts juice using hydraulic pressure.</p>
                 <ul class="process-list">
-                    <li><svg viewBox="0 0 24 24" width="28" height="28" stroke="#8DC63F" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> No Heat Treatment</li>
-                    <li><svg viewBox="0 0 24 24" width="28" height="28" stroke="#8DC63F" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Zero Preservatives</li>
-                    <li><svg viewBox="0 0 24 24" width="28" height="28" stroke="#8DC63F" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% Raw Ingredients</li>
+                    <li class="reveal delay-1">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="#8DC63F" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Up to 5x more vitamins and enzymes
+                    </li>
+                    <li class="reveal delay-2">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="#8DC63F" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Zero oxidation for longer-lasting freshness
+                    </li>
+                    <li class="reveal delay-3">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="#8DC63F" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Richer, deeper, and more authentic flavor profiles
+                    </li>
                 </ul>
             </div>
-            <div class="process-video-wrapper">
+            <div class="process-video-container reveal delay-2">
                 <video autoplay muted loop playsinline class="process-video">
                     <source src="./assets/videos/kiwi-fruit.mp4" type="video/mp4">
                 </video>
@@ -432,23 +493,23 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-section reveal">
+    <section class="stats-section">
         <div class="stats-container">
-            <div class="stat-item">
+            <div class="stat-item reveal delay-1">
                 <div class="stat-number" style="color: #F7931E;">1M+</div>
                 <div class="stat-label">Bottles Sold</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" style="color: #ED1C24;">100%</div>
+            <div class="stat-item reveal delay-2">
+                <div class="stat-number" style="color: #8DC63F;">100%</div>
                 <div class="stat-label">Organic</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" style="color: #8DC63F;">50+</div>
+            <div class="stat-item reveal delay-3">
+                <div class="stat-number" style="color: #D91C5C;">50+</div>
                 <div class="stat-label">Partner Farms</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" style="color: #C1272D;">0g</div>
-                <div class="stat-label">Added Sugar</div>
+            <div class="stat-item reveal delay-4">
+                <div class="stat-number" style="color: #ED1C24;">Zero</div>
+                <div class="stat-label">Additives</div>
             </div>
         </div>
         <!-- Decorative Shapes -->
@@ -457,28 +518,19 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section reveal">
-        <h2 class="section-title text-center">WHAT THEY SAY</h2>
-        <p class="section-subtitle text-center" style="margin-bottom: 4rem;">Real stories from our healthy community.</p>
+    <section class="testimonials-section">
+        <h2 class="section-title text-center reveal">WHAT THEY SAY</h2>
+        <p class="section-subtitle text-center reveal delay-1" style="margin-bottom: 4rem;">Real stories from our healthy community.</p>
         <div class="testimonials-grid">
-            <div class="testimonial-card">
+            <div class="testimonial-card reveal delay-1">
                 <div class="quote-icon" style="color: #F7931E;">"</div>
-                <p>"FIST-O completely changed my morning routine. The Tropical Mango is out of this world!"</p>
-                <h4>- Sarah J.</h4>
-                <div class="test-fruit-bg" style="background: #F7931E;"></div>
-                <img src="./assets/images/card-images/mango-fruit.webp" alt="Mango" class="test-fruit">
+                <p>The Mango Tropical flavor is absolutely incredible. It tastes like it was just picked from the tree. No weird aftertaste, just pure fruit!</p>
+                <h4>- Sarah Jenkins</h4>
+                <div class="test-fruit-bg" style="background: rgba(247, 147, 30, 0.2);"></div>
+                <img src="./assets/images/card-images/mango-fruit.webp" class="test-fruit" alt="Mango">
             </div>
-            <div class="testimonial-card">
-                <div class="quote-icon" style="color: #D91C5C;">"</div>
-                <p>"I've never tasted a juice so pure. You can literally feel the Dragon Fruit energy!"</p>
-                <h4>- Michael T.</h4>
-                <div class="test-fruit-bg" style="background: #D91C5C;"></div>
-                <img src="./assets/images/card-images/dragon-fruit.webp" alt="Dragon Fruit" class="test-fruit">
-            </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card reveal delay-2">
                 <div class="quote-icon" style="color: #8DC63F;">"</div>
-                <p>"As an athlete, the fresh Kiwi blend gives me the perfect recovery boost after a workout."</p>
-                <h4>- Emma W.</h4>
                 <div class="test-fruit-bg" style="background: #8DC63F;"></div>
                 <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Kiwi" class="test-fruit">
             </div>
@@ -521,15 +573,15 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section reveal">
+    <section class="contact-section">
         <video autoplay muted loop playsinline class="contact-bg-video">
             <source src="./assets/videos/orange-fruit.mp4" type="video/mp4">
         </video>
         <div class="contact-overlay"></div>
-        <div class="contact-content">
+        <div class="contact-content reveal">
             <h2 class="section-title text-white">GET IN TOUCH</h2>
             <p class="text-white">Have questions about our juices or want to partner with us?</p>
-            <form class="contact-form">
+            <form class="contact-form reveal delay-1">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
                 <textarea placeholder="Your Message" rows="4" required></textarea>
