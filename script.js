@@ -53,7 +53,7 @@ function updateRadius() {
     }
     else if (window.innerWidth <= 768) {
         // Moderate radius for tablet
-        radius = window.innerWidth * 0.80;
+        radius = window.innerWidth * 1;
     }
     else if (window.innerWidth <= 991) {
         // Large radius for tablet — pushes cards far apart along the arc

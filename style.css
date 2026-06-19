@@ -1668,34 +1668,37 @@ header {
     }
 
     .stage {
-        width: 55vw;
+        width: 61vw;
+        scale: 1.05;
     }
 
     .bottle-wrapper {
-        bottom: 5vw;
-        height: 52vw;
-        /* Bottle size slightly more big */
-        width: 24.5vw;
-    }
-
+    bottom: 14vw;
+    height: 55vw;
+    width: 30.5vw;
+}
     .bottle-fruit {
         width: 20vw;
         right: -8vw;
         bottom: -2vw;
+        scale: 1.03;
     }
 
     .wheel-container {
-        bottom: -80vw;
+        bottom: -135vw;
         /* Pushed much lower — cards now sit near the bottle level */
     }
 
     .card {
-        width: 16vw;
-        height: 22vw;
+        width: 25vw;
+        height: 30vw;
+        align-items: center;
+        justify-content: center;
+        scale: 1.06;
     }
 
     .card-img-container {
-        width: 12vw;
+        width: 15vw;
     }
 
     .card h3 {
@@ -1823,7 +1826,7 @@ header {
     }
 
     .stage {
-        width: 75vw;
+        width: 65vw;
     }
 
        .main-content {
@@ -1846,7 +1849,7 @@ header {
     }
 
     .wheel-container {
-        bottom: 10vw;
+        bottom: -40vw;
     }
 
     .stage-container {
