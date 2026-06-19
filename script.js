@@ -1,15 +1,15 @@
 const fruitsData = [
-    { id: 'kiwi', title: 'KIWI', subtitle: 'Tangy & Fresh', bg: 'kiwi-bg.webp', videoBg: './assets/videos/kiwi-fruit.mp4', bottle: 'kiwi-bottle.webp', fruit: 'kiwi-fruit.webp', color: '#8DC63F' },
-    { id: 'strawberry', title: 'STRAWBERRY', subtitle: 'Sweet & Refreshing', bg: 'strawberry-bg.webp', videoBg: './assets/videos/strawberry-fruit.mp4', bottle: 'strawberry-bottle.webp', fruit: 'strawberry-fruit.webp', color: '#ED1C24' },
-    { id: 'mango', title: 'MANGO', subtitle: 'Tropical Delight', bg: 'mango-bg.webp', videoBg: './assets/videos/mango-fruit.mp4', bottle: 'mango-bottle.webp', fruit: 'mango-fruit.webp', color: '#F7931E' },
-    { id: 'guava', title: 'GUAVA', subtitle: 'Sweet Fruit Earth', bg: 'guava-bg.webp', videoBg: './assets/videos/guava-fruit.mp4', bottle: 'guava-bottle.webp', fruit: 'guava-fruit.webp', color: '#F26522' },
-    { id: 'dragon-fruit', title: 'DRAGON FRUIT', subtitle: 'Exotic Superfruit', bg: 'dragon-fruit-bg.webp', videoBg: './assets/videos/dragon-fruit.mp4', bottle: 'dragon-fruit-bottle.webp', fruit: 'dragon-fruit.webp', color: '#D91C5C' },
-    { id: 'orange', title: 'ORANGE', subtitle: 'Citrus Boost', bg: 'orange-bg.webp', videoBg: './assets/videos/orange-fruit.mp4', bottle: 'orange-bottle.webp', fruit: 'orange-fruit.webp', color: '#F15A24' },
-    { id: 'avocado', title: 'AVOCADO', subtitle: 'Creamy & Nutritious', bg: 'avacado-bg.webp', videoBg: './assets/videos/avacado-fruit.mp4', bottle: 'avacado-bottle.webp', fruit: 'avacado-fruit.webp', color: '#39B54A' },
-    { id: 'blueberry', title: 'BLUEBERRY', subtitle: 'Tropical Delight', bg: 'blueberry-bg.webp', videoBg: './assets/videos/blueberry-fruit.mp4', bottle: 'blueberry-bottle.webp', fruit: 'blueberry-fruit.webp', color: '#2E3192' },
-    { id: 'watermelon', title: 'WATERMELON', subtitle: 'Cool & Hydrating', bg: 'watermelon-bg.webp', videoBg: './assets/videos/watermelon-fruit.mp4', bottle: 'watermelon-bottle.webp', fruit: 'watermelon-fruit.webp', color: '#ED1E79' },
-    { id: 'grape', title: 'GRAPES', subtitle: 'Sweet Crush Drops', bg: 'grape-bg.webp', bottle: 'grape-bottle.webp', fruit: 'grape-fruit.webp', videoBg: './assets/videos/grapes-fruit.mp4',  color: '#662D91' },
-    { id: 'pomegranate', title: 'POMEGRANATE', subtitle: 'Naturally Energizing', bg: 'pomogranate-bg.webp', bottle: 'pomogranate-bottle.webp', fruit: 'pomegranate-fruit.webp', videoBg: './assets/videos/pomogranate-fruit.mp4', color: '#C1272D' }
+    { id: 'kiwi', title: 'KIWI', subtitle: 'Tangy & Fresh', bg: 'kiwi-bg.webp', videoBg: './assets/videos/kiwi-fruit.mp4', bottle: 'kiwi-bottle.webp', fruit: 'kiwi-fruit.webp', color: '#8DC63F', stat: '110', label: 'CALORIES', f1: 'High in Vitamin C', f2: 'Aids Digestion', f3: 'Immunity Booster' },
+    { id: 'strawberry', title: 'STRAWBERRY', subtitle: 'Sweet & Refreshing', bg: 'strawberry-bg.webp', videoBg: './assets/videos/strawberry-fruit.mp4', bottle: 'strawberry-bottle.webp', fruit: 'strawberry-fruit.webp', color: '#ED1C24', stat: '95', label: 'CALORIES', f1: 'Antioxidant Rich', f2: 'Heart Healthy', f3: 'Zero Fat' },
+    { id: 'mango', title: 'MANGO', subtitle: 'Tropical Delight', bg: 'mango-bg.webp', videoBg: './assets/videos/mango-fruit.mp4', bottle: 'mango-bottle.webp', fruit: 'mango-fruit.webp', color: '#F7931E', stat: '130', label: 'CALORIES', f1: 'Rich in Vitamin A', f2: 'Energy Booster', f3: 'Tropical Flavor' },
+    { id: 'guava', title: 'GUAVA', subtitle: 'Sweet Fruit Earth', bg: 'guava-bg.webp', videoBg: './assets/videos/guava-fruit.mp4', bottle: 'guava-bottle.webp', fruit: 'guava-fruit.webp', color: '#F26522', stat: '105', label: 'CALORIES', f1: 'Fiber Rich', f2: 'Low Glycemic', f3: 'Pink Guava Extract' },
+    { id: 'dragon-fruit', title: 'DRAGON FRUIT', subtitle: 'Exotic Superfruit', bg: 'dragon-fruit-bg.webp', videoBg: './assets/videos/dragon-fruit.mp4', bottle: 'dragon-fruit-bottle.webp', fruit: 'dragon-fruit.webp', color: '#D91C5C', stat: '90', label: 'CALORIES', f1: 'Prebiotic Fiber', f2: 'Iron Rich', f3: 'Exotic Taste' },
+    { id: 'orange', title: 'ORANGE', subtitle: 'Citrus Boost', bg: 'orange-bg.webp', videoBg: './assets/videos/orange-fruit.mp4', bottle: 'orange-bottle.webp', fruit: 'orange-fruit.webp', color: '#F15A24', stat: '115', label: 'CALORIES', f1: '100% Daily Vit C', f2: 'Hydrating', f3: 'No Concentrates' },
+    { id: 'avocado', title: 'AVOCADO', subtitle: 'Creamy & Nutritious', bg: 'avacado-bg.webp', videoBg: './assets/videos/avacado-fruit.mp4', bottle: 'avacado-bottle.webp', fruit: 'avacado-fruit.webp', color: '#39B54A', stat: '150', label: 'CALORIES', f1: 'Healthy Fats', f2: 'Creamy Texture', f3: 'Satiating' },
+    { id: 'blueberry', title: 'BLUEBERRY', subtitle: 'Antioxidant Power', bg: 'blueberry-bg.webp', videoBg: './assets/videos/blueberry-fruit.mp4', bottle: 'blueberry-bottle.webp', fruit: 'blueberry-fruit.webp', color: '#2E3192', stat: '85', label: 'CALORIES', f1: 'Brain Health', f2: 'Super Antioxidants', f3: 'Low Sugar' },
+    { id: 'watermelon', title: 'WATERMELON', subtitle: 'Cool & Hydrating', bg: 'watermelon-bg.webp', videoBg: './assets/videos/watermelon-fruit.mp4', bottle: 'watermelon-bottle.webp', fruit: 'watermelon-fruit.webp', color: '#ED1E79', stat: '75', label: 'CALORIES', f1: '92% Water', f2: 'Electrolytes', f3: 'Post-Workout' },
+    { id: 'grape', title: 'GRAPES', subtitle: 'Sweet Crush Drops', bg: 'grape-bg.webp', bottle: 'grape-bottle.webp', fruit: 'grape-fruit.webp', videoBg: './assets/videos/grapes-fruit.mp4',  color: '#662D91', stat: '120', label: 'CALORIES', f1: 'Resveratrol Rich', f2: 'Natural Energy', f3: 'Pure Extract' },
+    { id: 'pomegranate', title: 'POMEGRANATE', subtitle: 'Naturally Energizing', bg: 'pomogranate-bg.webp', bottle: 'pomogranate-bottle.webp', fruit: 'pomegranate-fruit.webp', videoBg: './assets/videos/pomogranate-fruit.mp4', color: '#C1272D', stat: '140', label: 'CALORIES', f1: 'Heart Healthy', f2: 'Vibrant Taste', f3: '100% Pure' }
 ];
 
 const basePath = './assets/images/';
@@ -37,23 +37,27 @@ window.addEventListener('resize', () => {
     updateCardPositions();
 });
 
+function toggleMobileNav() {
+    const nav = document.querySelector('.nav-pill');
+    const btn = document.getElementById('hamburger-btn');
+    nav.classList.toggle('mobile-active');
+    btn.classList.toggle('is-open');
+}
+
 function updateRadius() {
     // The user styled wheel-container at bottom: -30vw
     // By setting radius to a percentage of innerWidth, we simulate 'vw' units
     if (window.innerWidth <= 500) {
-        // Reduced radius and raised wheel container to bring the cards perfectly close together
-        // fixing the disjointed alignment on mobile devices
+        // Moderate radius for mobile
         radius = window.innerWidth * 1.05;
     }
     else if (window.innerWidth <= 768) {
-        // Reduced radius and raised wheel container to bring the cards perfectly close together
-        // fixing the disjointed alignment on mobile devices
+        // Moderate radius for tablet
         radius = window.innerWidth * 0.80;
     }
     else if (window.innerWidth <= 991) {
-        // Strict vw match for tablet: wheel container is -50vw.
-        // A radius of 95vw places the active card at exactly 45vw above the bottom, moving curve up and increasing card gaps
-        radius = window.innerWidth * 0.95;
+        // Large radius for tablet — pushes cards far apart along the arc
+        radius = window.innerWidth * 1.7;
     }
     else if (window.innerWidth <= 1300) {
         radius = window.innerWidth * 0.49;
@@ -178,13 +182,28 @@ function updateShowcase(newIndex, initial = false) {
     const fruit1 = document.getElementById('fruit-1');
     const fruit2 = document.getElementById('fruit-2');
 
+    // Update the action pill stats dynamically
+    const actionStat = document.getElementById('action-stat');
+    const actionLabel = document.getElementById('action-label');
+    if (actionStat && actionLabel) {
+        // Simple fade animation for the text
+        actionStat.style.opacity = '0';
+        actionLabel.style.opacity = '0';
+        setTimeout(() => {
+            actionStat.innerText = fruit.stat || '100';
+            actionLabel.innerText = fruit.label || 'CALORIES';
+            actionStat.style.opacity = '1';
+            actionLabel.style.opacity = '1';
+        }, 300);
+    }
+
     if (initial) {
         bottle1.src = `${basePath}bottle-images/${fruit.bottle}`;
         fruit1.src = `${basePath}card-images/${fruit.fruit}`;
         bottle1.classList.add('active');
         fruit1.classList.add('active');
-        bottle2.classList.remove('active');
-        fruit2.classList.remove('active');
+        bottle2.classList.remove('active', 'exiting');
+        fruit2.classList.remove('active', 'exiting');
     } else {
         const activeBottle = bottle1.classList.contains('active') ? bottle1 : bottle2;
         const inactiveBottle = bottle1.classList.contains('active') ? bottle2 : bottle1;
@@ -192,28 +211,36 @@ function updateShowcase(newIndex, initial = false) {
         const activeFruit = fruit1.classList.contains('active') ? fruit1 : fruit2;
         const inactiveFruit = fruit1.classList.contains('active') ? fruit2 : fruit1;
 
+        // Old elements exit
+        activeBottle.classList.remove('active');
+        activeBottle.classList.add('exiting');
+        activeFruit.classList.remove('active');
+        activeFruit.classList.add('exiting');
+
+        // New elements prepare
+        inactiveBottle.classList.remove('exiting');
+        inactiveFruit.classList.remove('exiting');
+        
         inactiveBottle.src = `${basePath}bottle-images/${fruit.bottle}`;
         inactiveFruit.src = `${basePath}card-images/${fruit.fruit}`;
+        
+        // Force reflow to instantly snap them to the hidden background position
+        void inactiveBottle.offsetWidth;
+        void inactiveFruit.offsetWidth;
 
-        inactiveBottle.onload = () => {
-            inactiveBottle.classList.add('active');
-            activeBottle.classList.remove('active');
-
-            inactiveFruit.classList.add('active');
-            activeFruit.classList.remove('active');
-        };
+        // New elements enter
+        inactiveBottle.classList.add('active');
+        inactiveFruit.classList.add('active');
     }
 
-    // Hide active card, show others
+    // Hide active card, show others using CSS classes
     extendedData.forEach((f, idx) => {
         const card = document.getElementById(`card-${idx}`);
         if (idx === activeIndex) {
             card.classList.add('active');
-            card.style.opacity = '0';
             card.style.pointerEvents = 'none';
         } else {
             card.classList.remove('active');
-            card.style.opacity = '1';
             card.style.pointerEvents = 'auto';
         }
     });
@@ -310,3 +337,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2500); // 2.5 seconds artificial loading time
     }
 });
+
+// Popup Logic
+function openProductPopup(indexOverride) {
+    let fruitDataIndex;
+    if (typeof indexOverride === 'number') {
+        fruitDataIndex = indexOverride;
+    } else {
+        fruitDataIndex = activeIndex % fruitsData.length;
+    }
+    const fruit = fruitsData[fruitDataIndex];
+    
+    // Populate Data
+    document.getElementById('popup-bottle').src = `${basePath}bottle-images/${fruit.bottle}`;
+    document.getElementById('popup-fruit').src = `${basePath}card-images/${fruit.fruit}`;
+    document.getElementById('popup-title').innerText = fruit.title;
+    document.getElementById('popup-subtitle').innerText = fruit.subtitle;
+    document.getElementById('popup-subtitle').style.color = fruit.color;
+    document.getElementById('popup-badge').style.color = fruit.color;
+    document.querySelector('.popup-bg-shape').style.background = fruit.color;
+    
+    // Features
+    document.getElementById('popup-f1').innerText = fruit.f1 || 'No Added Sugar';
+    document.getElementById('popup-f2').innerText = fruit.f2 || 'Rich in Vitamins';
+    document.getElementById('popup-f3').innerText = fruit.f3 || 'Cold Pressed Extraction';
+    
+    // Update SVG stroke colors
+    document.querySelectorAll('.popup-features li svg').forEach(svg => {
+        svg.style.stroke = fruit.color;
+    });
+
+    // Show popup
+    document.getElementById('product-popup-overlay').classList.add('active');
+    
+    // Stop rotation when popup is open
+    clearInterval(autoRotateInterval);
+}
+
+function closeProductPopup() {
+    document.getElementById('product-popup-overlay').classList.remove('active');
+    resetAutoRotate(); // Resume rotation
+}
