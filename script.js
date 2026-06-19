@@ -378,3 +378,40 @@ function closeProductPopup() {
     document.getElementById('product-popup-overlay').classList.remove('active');
     resetAutoRotate(); // Resume rotation
 }
+
+// Custom Cursor Logic
+document.addEventListener("DOMContentLoaded", () => {
+    const cursorDot = document.getElementById("cursor-dot");
+    const cursorOutline = document.getElementById("cursor-outline");
+    
+    // Check if on a non-touch device before enabling
+    if (window.matchMedia("(pointer: fine)").matches) {
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Add hover effect to interactive elements
+        const interactives = document.querySelectorAll('a, button, .card, .play-btn-wrapper, .hamburger-menu, .bestseller-item');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
+    } else {
+        // Hide cursor on touch devices
+        cursorDot.style.display = 'none';
+        cursorOutline.style.display = 'none';
+    }
+});

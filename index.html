@@ -21,30 +21,36 @@
             min-height: 80vh;
         }
 
-        .about-bg-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            filter: blur(3px) brightness(0.75) saturate(1.2);
-        }
-
-        .about-bg-overlay {
+        .about-bg-shape {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: 0;
             height: 100%;
-            background: linear-gradient(135deg,
-                rgba(30, 20, 10, 0.55) 0%,
-                rgba(180, 80, 20, 0.45) 40%,
-                rgba(120, 20, 50, 0.50) 100%
-            );
+            width: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .about-leaf-left {
+            position: absolute;
+            top: -5%;
+            right: -2%;
+            width: 250px;
             z-index: 2;
+            pointer-events: none;
+            filter: drop-shadow(0 20px 20px rgba(0,0,0,0.15));
+        }
+
+        .about-leaf-right {
+            position: absolute;
+            bottom: -5%;
+            right: -2%;
+            width: 280px;
+            z-index: 4; /* Above the background shape */
+            pointer-events: none;
+            filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.15));
         }
 
         .reveal {
@@ -111,8 +117,8 @@
             max-width: 1300px;
             width: 100%;
             display: flex;
-            align-items: center;
-            gap: 4rem;
+            align-items: flex-end;
+            gap: 6rem;
         }
 
         .about-collage {
@@ -137,12 +143,27 @@
 
         .rotating-badge {
             position: absolute;
-            top: -30px;
-            left: -30px;
-            width: 200px;
-            height: 200px;
+            top: -30%;
+            left: 0%;
+            width: 150px;
+            height: 150px;
+            z-index: 5;
+        }
+        
+        .rotating-badge svg:first-child {
             animation: rotate 15s linear infinite;
-            opacity: 0.8;
+        }
+        
+        .badge-center-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
         }
 
         @keyframes rotate {
@@ -152,9 +173,12 @@
 
         .collage-bottle {
             position: relative;
-            height: 120%;
+            width: 125%;
+            height: auto;
+            max-width: none;
+            transform: translateX(-10%);
             z-index: 3;
-            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
         }
 
         .collage-fruit-1 {
@@ -214,13 +238,13 @@
         }
 
         .pulse-btn {
-            animation: pulse 2s infinite;
+            animation: pulse-green 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(247, 147, 30, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(247, 147, 30, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(247, 147, 30, 0); }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(120, 134, 47, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(120, 134, 47, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(120, 134, 47, 0); }
         }
 
         .play-btn-wrapper {
@@ -234,22 +258,21 @@
         .play-btn {
             width: 50px;
             height: 50px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.3);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
             transition: all 0.3s;
         }
 
         .play-btn-wrapper:hover .play-btn {
-            background: white;
+            background: rgba(0,0,0,0.05);
         }
 
         .play-btn-wrapper:hover .play-btn svg {
-            fill: #F7931E;
+            fill: #78862F;
         }
 
         .play-btn-wrapper span {
@@ -272,16 +295,16 @@
                 align-items: center;
             }
             .about-collage {
-                height: 380px;
+                height: auto;
                 width: 100%;
-                max-width: 420px;
-            }
-            .collage-glass-panel {
-                width: 260px;
-                height: 340px;
+                max-width: 550px;
+                margin-top: 2rem;
             }
             .collage-bottle {
-                height: 100%;
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                transform: translateX(0);
             }
             .collage-fruit-1 {
                 width: 90px;
@@ -294,10 +317,10 @@
                 bottom: 50px;
             }
             .rotating-badge {
-                width: 150px;
-                height: 150px;
-                top: -20px;
-                left: -20px;
+                width: 140px;
+                height: 140px;
+                top: -15%;
+                left: -5%;
             }
             .about-actions {
                 justify-content: center;
@@ -345,19 +368,47 @@
                 left: 10px;
                 bottom: 30px;
             }
-            .rotating-badge {
-                width: 110px;
-                height: 110px;
-                top: -15px;
-                left: -15px;
+            .watermark-text {
+                font-size: 8rem;
+                top: -40px;
+                left: -20px;
+            }
+            .about-features-row {
+                flex-direction: column;
+                gap: 1rem !important;
+                align-items: center;
+            }
+            .about-features-row .feature-item {
+                border-left: none !important;
+                padding-left: 0 !important;
+                border-top: 1px solid rgba(0,0,0,0.1);
+                padding-top: 1rem;
+                align-items: center;
+                text-align: center;
+            }
+            .about-features-row .feature-item:first-child {
+                border-top: none;
+                padding-top: 0;
+            }
+            .creative-about .section-title {
+                font-size: 2.5rem !important;
             }
             .about-actions {
                 flex-direction: column;
                 gap: 1rem;
                 align-items: center;
             }
+            .rotating-badge {
+                width: 110px;
+                height: 110px;
+                top: -10px;
+                left: -15px;
+            }
             .section-title {
                 font-size: 2rem;
+            }
+            .play-btn-wrapper span {
+                font-size: 0.9rem;
             }
             .creative-about p {
                 font-size: 0.95rem;
@@ -554,44 +605,75 @@
 
 
     <!-- About Us Section Redesigned -->
-    <section id="about" class="about-section creative-about">
-        <!-- Abstract Video Background -->
-        <video autoplay muted loop playsinline class="about-bg-video">
-            <source src="./assets/videos/guava-fruit.mp4" type="video/mp4">
-        </video>
-        <div class="about-bg-overlay"></div>
+    <!-- About Us Section Redesigned -->
+    <section id="about" class="about-section creative-about" style="background-color: #F1E9DA; overflow: hidden; position: relative;">
+        <!-- Background Elements -->
+        <img src="./assets/images/about-us-images/about-us-bg-image.webp" alt="" class="about-bg-shape">
+        <img src="./assets/images/about-us-images/about-left-leaf.webp" alt="" class="about-leaf-left float-anim-1">
+        <img src="./assets/images/about-us-images/about-righ-leaf.webp" alt="" class="about-leaf-right float-anim-2">
         
         <div class="creative-about-container">
             <!-- Left side: Collage -->
             <div class="about-collage reveal">
-                <div class="collage-glass-panel"></div>
                 <!-- Rotating Text Ring SVG -->
-                <div class="rotating-badge">
-                    <svg viewBox="0 0 100 100" width="200" height="200">
+                <div class="rotating-badge dark-badge">
+                    <svg viewBox="0 0 100 100" width="160" height="160">
                         <defs><path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" /></defs>
-                        <text font-size="11.5" font-family="'Oswald', sans-serif" font-weight="bold" fill="white" letter-spacing="3.5">
-                            <textPath href="#circlePath">100% ORGANIC • PURE FRESH •</textPath>
+                        <text font-size="12.5" font-family="'Oswald', sans-serif" font-weight="800" fill="#78862F" letter-spacing="3.2">
+                            <textPath href="#circlePath" startOffset="0%">100% ORGANIC • PURE FRESH •</textPath>
                         </text>
                     </svg>
+                    <!-- Leaf Icon inside ring -->
+                    <div class="badge-center-icon">
+                        <svg viewBox="0 0 24 24" width="34" height="34" fill="#78862F">
+                            <path d="M12 2c2.5 0 4 2 4 5.5 0 3.5-3 5.5-4 6.5-1-1-4-3-4-6.5C8 4 9.5 2 12 2z"/>
+                            <path d="M13 13c1.5-1.5 4-2 6.5-1 1 1 1.5 3 1 4.5-2.5.5-6-1-7.5-3.5z"/>
+                            <path d="M11 13C9.5 11.5 7 11 4.5 12 3.5 13 3 15 3.5 16.5 6 17 9.5 15.5 11 13z"/>
+                            <path d="M12 13v9" stroke="#78862F" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                 </div>
-                <img src="./assets/images/abuut-us-bottle-images.webp" alt="FIST-O Bottles" class="collage-bottle float-anim-1">
-                <img src="./assets/images/card-images/guava-fruit.webp" alt="Guava" class="collage-fruit-1 float-anim-2">
-                <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry" class="collage-fruit-2 float-anim-3">
+                <img src="./assets/images/about-us-images/abuut-us-bottle-images.webp" alt="FIST-O Bottles" class="collage-bottle">
             </div>
 
             <!-- Right side: Content -->
             <div class="about-content creative-text-panel reveal delay-1">
-                <div class="watermark-text">PURE</div>
-                <div class="content-wrapper">
-                    <div class="icon-accent"><svg viewBox="0 0 24 24" width="40" height="40" stroke="#f7dc1e" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
-                    <h2 class="section-title text-white">REDEFINING<br><span style="color:#f7dc1e;">FRESHNESS</span></h2>
-                    <p class="text-white">We believe in the raw, unadulterated power of nature. FIST-O isn't just a juice; it's a vibrant lifestyle choice. Born from the desire to bring authentic taste without compromises.</p>
-                    <p class="text-white opacity-80">Cold-pressed. Never heated. Zero artificial sugars. Experience the ultimate vitality in every single drop.</p>
-                    <div class="about-actions">
-                        <button class="primary-btn pulse-btn">Discover Our Story</button>
-                        <div class="play-btn-wrapper">
-                            <div class="play-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M8 5v14l11-7z"></path></svg></div>
-                            <span class="text-white">See How We Make It</span>
+                <div class="content-wrapper text-dark">
+                    <div class="icon-accent" style="margin-bottom: 1rem;">
+                        <svg viewBox="0 0 24 24" width="40" height="40" stroke="#78862F" stroke-width="1.5" fill="none" style="stroke-linecap: round; stroke-linejoin: round;">
+                            <polygon points="12 2 22 7 22 17 12 22 2 17 2 7 12 2"></polygon>
+                            <path d="M12 22V12"></path>
+                            <path d="M12 12l8.5-5"></path>
+                            <path d="M3.5 7L12 12"></path>
+                            <path d="M12 6c-2 0-3 2-3 2s1 2 3 2 3-2 3-2-1-2-3-2z"></path>
+                            <path d="M12 6v4"></path>
+                        </svg>
+                    </div>
+                    <h2 class="section-title text-dark" style="color: #2c3238; font-weight: 800; font-size: 3.5rem; line-height: 1.1;">REDEFINING<br><span style="color:#78862F;">FRESHNESS</span></h2>
+                    <p class="text-dark" style="color: #4a4a4a; margin-top: 1.5rem; font-size: 1.05rem;">We believe in the raw, unadulterated power of nature. FIST-O isn't just a juice; it's a vibrant lifestyle choice. Born from the desire to bring authentic taste without compromise.</p>
+                    <p class="text-dark opacity-80" style="color: #4a4a4a; margin-bottom: 2.5rem; font-size: 1.05rem;">Cold-pressed. Never heated. Zero artificial sugars. Experience the ultimate vitality in every single drop.</p>
+                    
+                    <div class="about-actions" style="margin-bottom: 3rem;">
+                        <button class="primary-btn pulse-btn" style="background: #78862F !important; color: white !important; border-color: #78862F !important; padding: 1rem 2.5rem !important;">Discover Our Story</button>
+                        <div class="play-btn-wrapper play-btn-dark">
+                            <div class="play-btn" style="border-color: #333;"><svg viewBox="0 0 24 24" width="16" height="16" fill="#333"><path d="M8 5v14l11-7z"></path></svg></div>
+                            <span class="text-dark" style="color: #333;">SEE HOW WE MAKE IT</span>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="about-features-row" style="display: flex; gap: 2rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 2rem;">
+                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <svg viewBox="0 0 24 24" width="30" height="30" stroke="#78862F" stroke-width="1.5" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            <span style="font-size: 0.8rem; font-weight: 700; color: #333; line-height: 1.2;">COLD<br>PRESSED</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem; border-left: 1px solid rgba(0,0,0,0.1); padding-left: 2rem;">
+                            <svg viewBox="0 0 24 24" width="30" height="30" stroke="#78862F" stroke-width="1.5" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                            <span style="font-size: 0.8rem; font-weight: 700; color: #333; line-height: 1.2;">NO ADDED<br>SUGAR</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem; border-left: 1px solid rgba(0,0,0,0.1); padding-left: 2rem;">
+                            <svg viewBox="0 0 24 24" width="30" height="30" stroke="#78862F" stroke-width="1.5" fill="none"><path d="M12 2C8 2 4 6 4 11c0 2.5 1 4.5 2.5 6L12 22l5.5-5c1.5-1.5 2.5-3.5 2.5-6 0-5-4-9-8-9zm0 0v10"></path></svg>
+                            <span style="font-size: 0.8rem; font-weight: 700; color: #333; line-height: 1.2;">RICH IN<br>NUTRIENTS</span>
                         </div>
                     </div>
                 </div>
@@ -628,14 +710,17 @@
         </div>
     </section>
 
+    
+
     <!-- Bestsellers Section -->
     <section id="products" class="bestsellers-section">
         <div class="decorative-bg-text">FAVORITES</div>
         <h2 class="section-title text-center reveal">OUR BESTSELLERS</h2>
         <p class="section-subtitle text-center reveal delay-1" style="margin-bottom: 3rem;">The crowd favorites that keep everyone coming back.</p>
-        <div class="bestsellers-container">
+        <div class="bestsellers-slider swiper" style="padding-bottom: 60px;">
+            <div class="bestsellers-container swiper-wrapper">
             <!-- Kiwi -->
-            <div class="bestseller-item reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/kiwi-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/kiwi-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(141, 198, 63, 0.1);"></div>
                 <img src="./assets/images/bottle-images/kiwi-bottle.webp" alt="Kiwi Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Kiwi" class="bestseller-fruit float-anim-1">
@@ -645,7 +730,7 @@
                 </div>
             </div>
             <!-- Strawberry -->
-            <div class="bestseller-item reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/strawberry-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/strawberry-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(237, 28, 36, 0.08);"></div>
                 <img src="./assets/images/bottle-images/strawberry-bottle.webp" alt="Strawberry Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry" class="bestseller-fruit float-anim-2">
@@ -655,7 +740,7 @@
                 </div>
             </div>
             <!-- Mango -->
-            <div class="bestseller-item reveal delay-3" style="--bg-image: url('./assets/images/product-card-images/mango-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-3" style="--bg-image: url('./assets/images/product-card-images/mango-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(247, 147, 30, 0.08);"></div>
                 <img src="./assets/images/bottle-images/mango-bottle.webp" alt="Mango Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/mango-fruit.webp" alt="Mango" class="bestseller-fruit float-anim-3">
@@ -665,7 +750,7 @@
                 </div>
             </div>
             <!-- Guava -->
-            <div class="bestseller-item reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/guava-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/guava-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(242, 101, 34, 0.08);"></div>
                 <img src="./assets/images/bottle-images/guava-bottle.webp" alt="Guava Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/guava-fruit.webp" alt="Guava" class="bestseller-fruit float-anim-1">
@@ -675,7 +760,7 @@
                 </div>
             </div>
             <!-- Dragon Fruit -->
-            <div class="bestseller-item reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/dragon-fruit-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/dragon-fruit-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(217, 28, 92, 0.08);"></div>
                 <img src="./assets/images/bottle-images/dragon-fruit-bottle.webp" alt="Dragon Fruit Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/dragon-fruit.webp" alt="Dragon Fruit" class="bestseller-fruit float-anim-2">
@@ -685,7 +770,7 @@
                 </div>
             </div>
             <!-- Orange -->
-            <div class="bestseller-item reveal delay-3" style="--bg-image: url('./assets/images/product-card-images/orange-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-3" style="--bg-image: url('./assets/images/product-card-images/orange-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(241, 90, 36, 0.08);"></div>
                 <img src="./assets/images/bottle-images/orange-bottle.webp" alt="Orange Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/orange-fruit.webp" alt="Orange" class="bestseller-fruit float-anim-3">
@@ -695,7 +780,7 @@
                 </div>
             </div>
             <!-- Avocado -->
-            <div class="bestseller-item reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/avacado-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/avacado-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(57, 181, 74, 0.08);"></div>
                 <img src="./assets/images/bottle-images/avacado-bottle.webp" alt="Avocado Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/avacado-fruit.webp" alt="Avocado" class="bestseller-fruit float-anim-1">
@@ -705,7 +790,7 @@
                 </div>
             </div>
             <!-- Blueberry -->
-            <div class="bestseller-item reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/blueberry-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/blueberry-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(46, 49, 146, 0.08);"></div>
                 <img src="./assets/images/bottle-images/blueberry-bottle.webp" alt="Blueberry Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/blueberry-fruit.webp" alt="Blueberry" class="bestseller-fruit float-anim-2">
@@ -715,7 +800,7 @@
                 </div>
             </div>
             <!-- Watermelon -->
-            <div class="bestseller-item reveal delay-3" style="--bg-image: url('./assets/images/product-card-images/watermelon-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-3" style="--bg-image: url('./assets/images/product-card-images/watermelon-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(237, 30, 121, 0.08);"></div>
                 <img src="./assets/images/bottle-images/watermelon-bottle.webp" alt="Watermelon Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/watermelon-fruit.webp" alt="Watermelon" class="bestseller-fruit float-anim-3">
@@ -725,7 +810,7 @@
                 </div>
             </div>
             <!-- Grapes -->
-            <div class="bestseller-item reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/grape-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-1" style="--bg-image: url('./assets/images/product-card-images/grape-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(102, 45, 145, 0.08);"></div>
                 <img src="./assets/images/bottle-images/grape-bottle.webp" alt="Grape Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/grape-fruit.webp" alt="Grapes" class="bestseller-fruit float-anim-1">
@@ -735,7 +820,7 @@
                 </div>
             </div>
             <!-- Pomegranate -->
-            <div class="bestseller-item reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/pomogranate-card-bg.webp');">
+            <div class="bestseller-item swiper-slide reveal delay-2" style="--bg-image: url('./assets/images/product-card-images/pomogranate-card-bg.webp');">
                 <div class="bestseller-bg" style="background-color: rgba(193, 39, 45, 0.08);"></div>
                 <img src="./assets/images/bottle-images/pomogranate-bottle.webp" alt="Pomegranate Juice" class="bestseller-bottle">
                 <img src="./assets/images/card-images/pomegranate-fruit.webp" alt="Pomegranate" class="bestseller-fruit float-anim-3">
@@ -743,65 +828,16 @@
                     <h4>POMEGRANATE SPARK</h4>
                     <button class="bestseller-btn spark-btn" style="color: #C1272D;" onclick="openProductPopup(10)">View Details</button>
                 </div>
-            </div>
-        </div>
-    </section>
+            </div> <!-- closes last swiper-slide -->
+        </div> <!-- closes swiper-wrapper -->
+        
+        <!-- Bestsellers Pagination & Navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next" style="color: #F7931E; z-index: 50;"></div>
+        <div class="swiper-button-prev" style="color: #F7931E; z-index: 50;"></div>
+    </div> <!-- closes swiper -->
+</section>
 
-    <!-- Process Section Redesigned -->
-    <section class="process-section process-bento">
-        <div class="process-container">
-            <div class="process-header text-center reveal">
-                <h2 class="section-title">THE COLD PRESS DIFFERENCE</h2>
-                <h3 class="section-subtitle" style="color: #8DC63F;">Retaining Every Ounce of Goodness</h3>
-            </div>
-            
-            <div class="bento-grid">
-                <!-- Large Video Tile -->
-                <div class="bento-item bento-video reveal delay-1">
-                    <video autoplay muted loop playsinline class="process-video">
-                        <source src="./assets/videos/kiwi-fruit.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-overlay"></div>
-                    <div class="video-text">
-                        <h4>Pure Extraction</h4>
-                        <p>No heat. No blades. Just raw hydraulic pressure.</p>
-                    </div>
-                </div>
-
-                <!-- Info Tile -->
-                <div class="bento-item bento-info reveal delay-2">
-                    <h4>Why Cold Press?</h4>
-                    <p>Unlike traditional juicing that uses heat-producing blades, our state-of-the-art cold press process gently extracts juice using hydraulic pressure. This preserves the cellular structure of the fruits.</p>
-                    <img src="./assets/images/card-images/kiwi-fruit.webp" class="bento-fruit float-anim-1" alt="Kiwi">
-                </div>
-
-                <!-- Feature Tiles -->
-                <div class="bento-item bento-feature reveal delay-3">
-                    <div class="bento-icon" style="background: rgba(141, 198, 63, 0.1); color: #8DC63F;">
-                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                    </div>
-                    <h4>5x Nutrients</h4>
-                    <p>Up to 5x more vitamins and live enzymes.</p>
-                </div>
-
-                <div class="bento-item bento-feature reveal delay-4">
-                    <div class="bento-icon" style="background: rgba(247, 147, 30, 0.1); color: #F7931E;">
-                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
-                    </div>
-                    <h4>Zero Oxidation</h4>
-                    <p>No air exposure means longer-lasting freshness.</p>
-                </div>
-
-                <div class="bento-item bento-feature reveal delay-5">
-                    <div class="bento-icon" style="background: rgba(217, 28, 92, 0.1); color: #D91C5C;">
-                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                    </div>
-                    <h4>Richer Flavor</h4>
-                    <p>Deeper, more authentic taste profiles in every sip.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Stats Section -->
     <section class="stats-section">
@@ -845,7 +881,63 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    
+    <!-- Process Section Redesigned -->
+    <section class="process-section process-bento">
+        <div class="process-container">
+            <div class="process-header text-center reveal">
+                <h2 class="section-title">THE COLD PRESS DIFFERENCE</h2>
+                <h3 class="section-subtitle" id="process-subtitle" style="color: #8DC63F; transition: color 0.4s ease;">Retaining Every Ounce of Goodness</h3>
+            </div>
+            
+                        <div class="bento-grid" id="dynamic-bento-grid">
+                <!-- Large Video Tile -->
+                <div class="bento-item bento-video reveal delay-1">
+                    <video autoplay muted loop playsinline class="process-video" id="bento-video">
+                        <source src="./assets/videos/kiwi-fruit.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                    <div class="video-text">
+                        <h4>Pure Extraction</h4>
+                        <p>No heat. No blades. Just raw hydraulic pressure.</p>
+                    </div>
+                </div>
+
+                <!-- Info Tile -->
+                <div class="bento-item bento-info reveal delay-2">
+                    <h4 id="bento-info-title">Why Cold Press?</h4>
+                    <p>Unlike traditional juicing that uses heat-producing blades, our state-of-the-art cold press process gently extracts juice using hydraulic pressure. This preserves the cellular structure of the fruits.</p>
+                    <img src="./assets/images/card-images/kiwi-fruit.webp" class="bento-fruit float-anim-1" id="bento-fruit-img" alt="Kiwi">
+                </div>
+
+                <!-- Feature Tiles -->
+                <div class="bento-item bento-feature reveal delay-3">
+                    <div class="bento-icon bento-dynamic-icon" style="background: rgba(141, 198, 63, 0.1); color: #8DC63F; transition: all 0.4s ease;">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h4>5x Nutrients</h4>
+                    <p>Up to 5x more vitamins and live enzymes.</p>
+                </div>
+
+                <div class="bento-item bento-feature reveal delay-4">
+                    <div class="bento-icon bento-dynamic-icon" style="background: rgba(141, 198, 63, 0.1); color: #8DC63F; transition: all 0.4s ease;">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+                    </div>
+                    <h4>Zero Oxidation</h4>
+                    <p>No air exposure means longer-lasting freshness.</p>
+                </div>
+
+                <div class="bento-item bento-feature reveal delay-5">
+                    <div class="bento-icon bento-dynamic-icon" style="background: rgba(141, 198, 63, 0.1); color: #8DC63F; transition: all 0.4s ease;">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                    </div>
+                    <h4>Richer Flavor</h4>
+                    <p>Deeper, more authentic taste profiles in every sip.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Testimonials Section -->
     <section class="testimonials-section">
         <h2 class="section-title text-center reveal">WHAT THEY SAY</h2>
         <p class="section-subtitle text-center reveal delay-1" style="margin-bottom: 4rem;">Real stories from our healthy community.</p>
@@ -1140,6 +1232,101 @@
                 },
             },
         });
+
+var bestsellersSwiper = new Swiper(".bestsellers-slider", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".bestsellers-slider .swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".bestsellers-slider .swiper-button-next",
+                prevEl: ".bestsellers-slider .swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 0,
+                },
+            },
+        });
+
+        // Dynamic Bento Grid Update
+        const bentoProducts = [
+            {name: 'kiwi', color: '#8DC63F', rgba: '141, 198, 63', video: 'kiwi-fruit.mp4', img: 'kiwi-fruit.webp'},
+            {name: 'strawberry', color: '#ED1C24', rgba: '237, 28, 36', video: 'strawberry-fruit.mp4', img: 'strawberry-fruit.webp'},
+            {name: 'mango', color: '#F7931E', rgba: '247, 147, 30', video: 'mango-fruit.mp4', img: 'mango-fruit.webp'},
+            {name: 'guava', color: '#F26522', rgba: '242, 101, 34', video: 'guava-fruit.mp4', img: 'guava-fruit.webp'},
+            {name: 'dragon-fruit', color: '#D91C5C', rgba: '217, 28, 92', video: 'dragon-fruit.mp4', img: 'dragon-fruit.webp'},
+            {name: 'orange', color: '#F15A24', rgba: '241, 90, 36', video: 'orange-fruit.mp4', img: 'orange-fruit.webp'},
+            {name: 'avacado', color: '#39B54A', rgba: '57, 181, 74', video: 'avacado-fruit.mp4', img: 'avacado-fruit.webp'},
+            {name: 'blueberry', color: '#2E3192', rgba: '46, 49, 146', video: 'blueberry-fruit.mp4', img: 'blueberry-fruit.webp'},
+            {name: 'watermelon', color: '#ED1E79', rgba: '237, 30, 121', video: 'watermelon-fruit.mp4', img: 'watermelon-fruit.webp'},
+            {name: 'grape', color: '#662D91', rgba: '102, 45, 145', video: 'grapes-fruit.mp4', img: 'grape-fruit.webp'},
+            {name: 'pomogranate', color: '#C1272D', rgba: '193, 39, 45', video: 'pomogranate-fruit.mp4', img: 'pomegranate-fruit.webp'}
+        ];
+
+        bestsellersSwiper.on('slideChange', function () {
+            const index = this.realIndex;
+            if(bentoProducts[index]) {
+                const p = bentoProducts[index];
+                
+                // Update Video
+                const videoEl = document.getElementById('bento-video');
+                if(videoEl) {
+                    const sourceEl = videoEl.querySelector('source');
+                    if(sourceEl) {
+                        sourceEl.src = './assets/videos/' + p.video;
+                        videoEl.load();
+                    }
+                }
+                
+                // Update Info Tile Background
+                const infoEl = document.querySelector('.bento-info');
+                if(infoEl) {
+                    infoEl.style.background = 'linear-gradient(135deg, ' + p.color + ', ' + p.color + ')';
+                }
+                
+                // Update Subtitle Color
+                const subtitleEl = document.getElementById('process-subtitle');
+                if(subtitleEl) subtitleEl.style.color = p.color;
+                
+                // Update Image
+                const imgEl = document.getElementById('bento-fruit-img');
+                if(imgEl) {
+                    imgEl.src = './assets/images/card-images/' + p.img;
+                    imgEl.alt = p.name;
+                }
+                
+                // Update Icons Colors
+                const icons = document.querySelectorAll('.bento-dynamic-icon');
+                icons.forEach(icon => {
+                    icon.style.color = p.color;
+                    icon.style.background = 'rgba(' + p.rgba + ', 0.1)';
+                });
+            }
+        });
     </script>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
 </body>
 </html>
+
+
+
+
