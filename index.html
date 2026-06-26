@@ -3,7 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruit Juice Showcase</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>PURE EXTRACT | Premium Cold-Pressed Juices</title>
+    <meta name="title" content="PURE EXTRACT | Premium Cold-Pressed Juices">
+    <meta name="description" content="Discover nature's finest fruits, cold-pressed to perfection. Every sip of our 100% natural, no added sugar juices is a promise of purity.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍊</text></svg>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pure-extract.com/">
+    <meta property="og:title" content="PURE EXTRACT | Premium Cold-Pressed Juices">
+    <meta property="og:description" content="Discover nature's finest fruits, cold-pressed to perfection. 100% natural, no added sugar.">
+    <meta property="og:image" content="./assets/images/card-images/mango-fruit.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pure-extract.com/">
+    <meta property="twitter:title" content="PURE EXTRACT | Premium Cold-Pressed Juices">
+    <meta property="twitter:description" content="Discover nature's finest fruits, cold-pressed to perfection. 100% natural, no added sugar.">
+    <meta property="twitter:image" content="./assets/images/card-images/mango-fruit.webp">
+
     <link rel="stylesheet" href="style.css?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -474,22 +496,144 @@
             0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
+        @keyframes bar-loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        
+        /* ============================
+           CONTACT — Fruit Field Design
+           ============================ */
+        .contact-form-panel {
+            background: rgba(15, 10, 5, 0.88) !important;
+            border-radius: 16px !important;
+            padding: 2rem !important;
+            backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255,255,255,0.07) !important;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5) !important;
+        }
+
+        /* Labeled field groups */
+        .cf-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .cf-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .cf-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        /* Base input style */
+        .contact-form input, .contact-form textarea {
+            background: rgba(255,255,255,0.04) !important;
+            border: none !important;
+            border-left: 3px solid rgba(255,255,255,0.15) !important;
+            border-radius: 0 10px 10px 0 !important;
+            color: white !important;
+            padding: 0.9rem 1.2rem !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 0.88rem !important;
+            width: 100% !important;
+            transition: all 0.3s ease !important;
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.28) !important;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none !important;
+            background: rgba(255,255,255,0.06) !important;
+        }
+
+        /* Per-field accent colors via left border + focus glow */
+        .cf-field--orange input { border-left-color: #F7931E !important; }
+        .cf-field--orange input:focus { box-shadow: -2px 0 12px rgba(247,147,30,0.3) !important; background: rgba(247,147,30,0.05) !important; }
+
+        .cf-field--green input { border-left-color: #8DC63F !important; }
+        .cf-field--green input:focus { box-shadow: -2px 0 12px rgba(141,198,63,0.3) !important; background: rgba(141,198,63,0.05) !important; }
+
+        .cf-field--pink input { border-left-color: #ED1E79 !important; }
+        .cf-field--pink input:focus { box-shadow: -2px 0 12px rgba(237,30,121,0.3) !important; background: rgba(237,30,121,0.05) !important; }
+
+        .cf-field--purple textarea { border-left-color: #662D91 !important; }
+        .cf-field--purple textarea:focus { box-shadow: -2px 0 12px rgba(102,45,145,0.3) !important; background: rgba(102,45,145,0.05) !important; }
+
+        .cf-row { display: flex; gap: 1rem; }
+        .cf-row .cf-field { flex: 1; }
+
+        .contact-form-fields { display: flex; flex-direction: column; gap: 1.2rem; }
+
+        /* Submit button — bold solid orange */
+        .contact-submit-btn {
+            background: #F7931E !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 1rem 1.5rem !important;
+            font-size: 0.9rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 2px !important;
+            text-transform: uppercase !important;
+            box-shadow: 0 8px 24px rgba(247,147,30,0.4) !important;
+            transition: all 0.3s ease !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 10px !important;
+            cursor: pointer !important;
+            width: 100% !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+        .contact-submit-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .contact-submit-btn:hover::after {
+            transform: translateX(100%);
+        }
+        .contact-submit-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 14px 30px rgba(247,147,30,0.5) !important;
+        }
+        .contact-submit-btn svg { transition: transform 0.3s ease; }
+        .contact-submit-btn:hover svg { transform: translateX(4px) translateY(-4px); }
     </style>
 </head>
 <body>
     <!-- Preloader -->
     <div id="preloader" class="preloader">
-        <div class="preloader-content">
-            <img src="./assets/images/fisto-logo.svg" alt="FIST-O Logo" class="preloader-logo" style="width: 250px; margin-bottom: 2rem; filter: brightness(0) invert(1);">
+        <div class="preloader-content" style="display: flex; flex-direction: column; align-items: center;">
+            
+            <h2 style="font-family: 'Oswald', sans-serif; font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 2rem; color: white;">PURE EXTRACT</h2>
             <div class="spinner"></div>
-            <p>Extracting Freshness...</p>
+            <p style="margin-bottom: 0.5rem;">Extracting Freshness...</p>
+            <div style="width: 200px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; height: 100%; width: 50%; background: linear-gradient(90deg, transparent, #F7931E, transparent); animation: bar-loading 1.5s infinite ease-in-out;"></div>
+            </div>
         </div>
     </div>
 
 
     <header>
         <div class="logo">
-            <img src="./assets/images/fisto-logo.svg" alt="FIST-O" class="logo-img">
+            <img src="./assets/images/fisto-logo.svg" alt="FIST-O" class="logo-img" style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5)); transition: all 0.3s ease;">
         </div>
         
         <nav class="nav-pill normal-nav">
@@ -844,7 +988,7 @@
 
 
     <!-- Stats Section -->
-    <section class="stats-section">
+    <section class="stats-section" style="display:none;">
         <div class="stats-intro reveal">
             <h2 class="section-title">BY THE NUMBERS</h2>
             <p>A track record built on trust, nature, and relentless passion.</p>
@@ -1060,126 +1204,188 @@
             <!-- Right Form Panel -->
             <div class="contact-form-panel reveal delay-2">
                 <form class="contact-form" onsubmit="return false;">
-                    <div class="contact-form-row">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
+                    <div class="contact-form-fields">
+                        <!-- Row: Name + Email -->
+                        <div class="cf-row">
+                            <div class="cf-field cf-field--orange">
+                                <label class="cf-label" style="color: #F7931E;">
+                                    <span class="cf-dot" style="background:#F7931E;"></span> Name
+                                </label>
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="cf-field cf-field--green">
+                                <label class="cf-label" style="color: #8DC63F;">
+                                    <span class="cf-dot" style="background:#8DC63F;"></span> Email
+                                </label>
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <!-- Subject -->
+                        <div class="cf-field cf-field--pink">
+                            <label class="cf-label" style="color: #ED1E79;">
+                                <span class="cf-dot" style="background:#ED1E79;"></span> Subject
+                            </label>
+                            <input type="text" placeholder="What's this about?">
+                        </div>
+                        <!-- Message -->
+                        <div class="cf-field cf-field--purple">
+                            <label class="cf-label" style="color: #9B59D6;">
+                                <span class="cf-dot" style="background:#9B59D6;"></span> Message
+                            </label>
+                            <textarea placeholder="Tell us about your order, query or idea..." rows="4" required></textarea>
+                        </div>
+                        <!-- Submit -->
+                        <button type="submit" class="contact-submit-btn">
+                            Send Message
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
                     </div>
-                    <input type="text" placeholder="Subject">
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="contact-submit-btn">
-                        Send Message
-                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="site-footer">
+    <!-- Premium Footer Section -->
+    <style>
+        .premium-footer {
+            background: #050505;
+            color: #888;
+            font-family: 'Poppins', sans-serif;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+        }
+        .premium-footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        @media (max-width: 768px) {
+            .premium-footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+            }
+        }
+        .footer-brand img {
+            height: 45px;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            max-width: 350px;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .footer-brand p { margin: 0 auto; }
+        }
+        .footer-col h4 {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            margin-top: 0;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .footer-col ul a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .footer-col ul a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+        }
+        .footer-socials {
+            display: flex;
+            gap: 1.2rem;
+        }
+        .footer-socials a {
+            color: #888;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: flex;
+        }
+        .footer-socials a:hover {
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .footer-legal-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .footer-legal-links a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-legal-links a:hover {
+            color: #fff;
+        }
+    </style>
 
-       
-
-        <!-- Main Footer Body -->
-        <div class="footer-body">
-            <div class="footer-grid">
-
-                <!-- Brand Column -->
-                <div class="footer-col footer-brand">
-                    <img src="./assets/images/fisto-logo.svg" alt="FIST-O Logo" class="footer-logo">
-                    <p class="footer-tagline">Nature's finest fruits, cold-pressed to perfection. Every sip is a promise of purity.</p>
-                    <div class="footer-socials">
-                        <a href="#" class="footer-social-link" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                        </a>
-                        <a href="#" class="footer-social-link" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" class="footer-social-link" aria-label="Twitter / X">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-                        </a>
-                        <a href="#" class="footer-social-link" aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="none" fill="currentColor"></polygon></svg>
-                        </a>
-                        <a href="#" class="footer-social-link" aria-label="LinkedIn">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Quick Links Column -->
-                <div class="footer-col">
-                    <h4 class="footer-col-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#app">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#products">Our Products</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Products Column -->
-                <div class="footer-col">
-                    <h4 class="footer-col-title">Our Flavors</h4>
-                    <ul class="footer-links">
-                        <li><a href="#products">Kiwi Detox Blend</a></li>
-                        <li><a href="#products">Tropical Mango</a></li>
-                        <li><a href="#products">Blueberry Burst</a></li>
-                        <li><a href="#products">Pomegranate Spark</a></li>
-                        <li><a href="#products">Strawberry Splash</a></li>
-                        <li><a href="#products">Guava Fresh</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact & Address Column -->
-                <div class="footer-col">
-                    <h4 class="footer-col-title">Get In Touch</h4>
-                    <ul class="footer-contact-list">
-                        <li>
-                            <span class="footer-contact-icon">
-                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            </span>
-                            <span>42, Green Valley Road,<br>Fruit Nagar, Kerala — 682020<br>India</span>
-                        </li>
-                        <li>
-                            <span class="footer-contact-icon">
-                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 16l.42.92z"></path></svg>
-                            </span>
-                            <span>+91 98765 43210</span>
-                        </li>
-                        <li>
-                            <span class="footer-contact-icon">
-                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            </span>
-                            <span>hello@fisto.in</span>
-                        </li>
-                        <li>
-                            <span class="footer-contact-icon">
-                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                            </span>
-                            <span>Mon – Sat: 9 AM – 6 PM IST</span>
-                        </li>
-                    </ul>
-                </div>
-
+    <footer class="premium-footer">
+        <div class="premium-footer-inner">
+            <div class="footer-brand">
+                <img src="./assets/images/fisto-logo.svg" alt="FISTO">
+                <p>Nature's finest fruits, cold-pressed to perfection. Delivering pure, unadulterated freshness straight to your doorstep.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#process">The Process</a></li>
+                    <li><a href="#benefits">Sustainability</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
             </div>
         </div>
-
-        <!-- Copyright Bar -->
-        <div class="footer-copyright-bar">
-            <div class="footer-copyright-inner">
-                <p>© 2026 <strong>Fisto Tech Pvt Ltd.</strong> All rights reserved.</p>
-                <div class="footer-legal-links">
-                    <a href="#">Privacy Policy</a>
-                    <span class="footer-divider">|</span>
-                    <a href="#">Terms of Use</a>
-                    <span class="footer-divider">|</span>
-                    <a href="#">Cookie Policy</a>
-                </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 Fisto Tech Pvt Ltd. All rights reserved.</div>
+            <div class="footer-legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="none" fill="currentColor"></polygon></svg></a>
             </div>
         </div>
-
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -1191,7 +1397,7 @@
             <button class="popup-close" onclick="closeProductPopup()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <div class="popup-left">
+            <div class="popup-left"> 
                 <div class="popup-bg-shape"></div>
                 <img id="popup-bottle" src="" alt="Bottle">
                 <img id="popup-fruit" src="" alt="Fruit" class="popup-fruit">

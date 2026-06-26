@@ -390,13 +390,13 @@ body {
     height: 310px; /* slightly smaller to fit well in narrower card */
     z-index: 2;
     filter: drop-shadow(0 15px 20px rgba(0,0,0,0.15));
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     margin: 0 auto 1.5rem auto; /* force centering */
     display: block;
 }
 
 .bestseller-item:hover .bestseller-bottle {
-    /* transform: translateY(-10px) scale(1); */
+    transform: scale(1.15);
 }
 
 .bestseller-fruit {
@@ -420,8 +420,10 @@ body {
 }
 
 .bestseller-info h4 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     margin-bottom: 1rem;
     color: #111;
     transition: color 0.4s ease;
@@ -433,36 +435,42 @@ body {
 
 .bestseller-btn {
     background: white;
-    color: #2E3192;
-    border: 2px solid #2E3192;
-    padding: 8px 25px;
+    border: 2px solid transparent;
+    padding: 12px 30px;
     border-radius: 50px;
     font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    animation: soft-pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes soft-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
 }
 
 .bestseller-btn:hover {
-    /* background: var(--theme-color); */
-    background: #2E3192;
-    color: white !important;
+    animation-play-state: paused;
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    border: 2px solid currentColor;
 }
 
-.trophical-btn {
-    color: #F7931E;
-    border: 2px solid #F7931E;
-}
+/* Remove old specific button hovers since new style relies on currentColor */
+/*
 .trophical-btn:hover {
     background: #F7931E;
 }
 
-.spark-btn {
-    color: #C1272D;
-    border: 2px solid #C1272D;
-}
 .spark-btn:hover {
     background: #C1272D;
 }
+*/
 
 /* Bestsellers Responsive */
 @media (max-width: 1024px) {
