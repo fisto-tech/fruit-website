@@ -26,7 +26,7 @@
     <meta property="twitter:description" content="Discover nature's finest fruits, cold-pressed to perfection. 100% natural, no added sugar.">
     <meta property="twitter:image" content="./assets/images/card-images/mango-fruit.webp">
 
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -852,11 +852,12 @@
             padding: 2.5rem;
             backdrop-filter: blur(25px);
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .contact-form-glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--active-flavor-color);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), 0 0 25px var(--active-flavor-rgba);
         }
 
         /* Flavor Selector styling */
@@ -894,7 +895,7 @@
             font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             outline: none;
         }
 
@@ -916,6 +917,7 @@
             border-color: var(--active-flavor-color);
             color: white;
             box-shadow: 0 0 15px var(--active-flavor-shadow);
+            transform: scale(1.06);
         }
 
         .contact-form-modern {
@@ -951,15 +953,16 @@
         .cf-highlight-bar {
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
             width: 0;
             height: 2px;
             background: var(--active-flavor-color);
-            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .contact-input-modern:focus ~ .cf-highlight-bar {
             width: 100%;
+            left: 0;
         }
 
         .cf-label-modern {
@@ -983,9 +986,9 @@
             color: var(--active-flavor-color);
         }
 
-        /* Submit Button — Professional Green Brand Gradient */
+        /* Submit Button — Dynamic Color Fill */
         .contact-modern-btn {
-            background: linear-gradient(135deg, #78862F 0%, #8DC63F 100%) !important;
+            background: linear-gradient(135deg, var(--active-flavor-color) 0%, color-mix(in srgb, var(--active-flavor-color) 82%, black) 100%) !important;
             color: white !important;
             border: none !important;
             border-radius: 10px !important;
@@ -994,7 +997,7 @@
             font-weight: 700 !important;
             letter-spacing: 2px !important;
             text-transform: uppercase !important;
-            box-shadow: 0 10px 25px rgba(120, 134, 47, 0.2) !important;
+            box-shadow: 0 10px 25px var(--active-flavor-shadow) !important;
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
             display: flex !important;
             justify-content: center !important;
@@ -1021,7 +1024,8 @@
 
         .contact-modern-btn:hover {
             transform: translateY(-3px) !important;
-            box-shadow: 0 15px 30px rgba(120, 134, 47, 0.35) !important;
+            box-shadow: 0 15px 30px var(--active-flavor-shadow) !important;
+            filter: brightness(1.1);
         }
 
         .contact-modern-btn svg { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
@@ -1876,7 +1880,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
     
     <!-- Product Popup Container -->
     <div id="product-popup-overlay" class="popup-overlay" onclick="closeProductPopup()">
