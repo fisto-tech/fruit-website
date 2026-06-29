@@ -26,7 +26,7 @@
     <meta property="twitter:description" content="Discover nature's finest fruits, cold-pressed to perfection. 100% natural, no added sugar.">
     <meta property="twitter:image" content="./assets/images/card-images/mango-fruit.webp">
 
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -1880,7 +1880,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
     
     <!-- Product Popup Container -->
     <div id="product-popup-overlay" class="popup-overlay" onclick="closeProductPopup()">
@@ -2021,23 +2021,7 @@ var bestsellersSwiper = new Swiper(".bestsellers-slider", {
             }
         });
 
-        // 3D Tilt Parallax Effect for Left Side Collage
-        const aboutCollage = document.querySelector('.about-collage');
-        if (aboutCollage) {
-            aboutCollage.addEventListener('mousemove', (e) => {
-                const rect = aboutCollage.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const xc = rect.width / 2;
-                const yc = rect.height / 2;
-                const angleX = (yc - y) / 12;
-                const angleY = (x - xc) / 12;
-                aboutCollage.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            aboutCollage.addEventListener('mouseleave', () => {
-                aboutCollage.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
-        }
+
 
         // Contact Form Interactive Flavor Selector
         const flavorPills = document.querySelectorAll('.flavor-pill');
