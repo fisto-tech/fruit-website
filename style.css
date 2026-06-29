@@ -199,29 +199,60 @@ body {
     margin: 4rem auto 0;
 }
 
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+@keyframes bg-spin {
+    to {
+        --border-angle: 1turn;
+    }
+}
+
 .feature-card {
     background: #fdfdfd;
     padding: 3rem 2rem;
     border-radius: 30px;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-    border: 0.5px solid #ED1C24;
-    border-bottom: 6px solid #ED1C24;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+    border: solid 6px transparent;
+    --border-angle: 0turn;
+    background: 
+        linear-gradient(#fdfdfd, #fdfdfd) padding-box,
+        conic-gradient(from var(--border-angle), #ED1C24 0deg 90deg, #ff6a00 90deg 180deg, #ED1C24 180deg 270deg, #ff6a00 270deg 360deg) border-box;
+    animation: bg-spin 4s linear infinite;
 }
 
 .feature-card:nth-child(2) {
-    border: 0.5px solid #F7931E;
-    border-bottom: 6px solid #F7931E;
+    background: 
+        linear-gradient(#fdfdfd, #fdfdfd) padding-box,
+        conic-gradient(from var(--border-angle), #F7931E 0deg 90deg, #8DC63F 90deg 180deg, #F7931E 180deg 270deg, #8DC63F 270deg 360deg) border-box;
 }
 
 .feature-card:nth-child(3) {
-    border: 0.5px solid #D91C5C;
-    border-bottom: 6px solid #D91C5C;
+    background: 
+        linear-gradient(#fdfdfd, #fdfdfd) padding-box,
+        conic-gradient(from var(--border-angle), #D91C5C 0deg 90deg, #662D91 90deg 180deg, #D91C5C 180deg 270deg, #662D91 270deg 360deg) border-box;
 }
 
 .feature-card:hover {
-    transform: translateY(-15px);
+    animation-play-state: paused;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.09);
+}
+
+.feature-card:nth-child(1):hover {
+    transform: translateY(-15px) scale(1.04) rotate(1.5deg);
+}
+
+.feature-card:nth-child(2):hover {
+    transform: translateY(-15px) scale(1.04) rotate(-1.5deg);
+}
+
+.feature-card:nth-child(3):hover {
+    transform: translateY(-15px) scale(1.04) rotate(1.5deg);
 }
 
 .feature-icon {
@@ -954,7 +985,7 @@ body {
 /* Contact Section */
 .contact-section {
     position: relative;
-    min-height: 620px;
+    min-height: auto;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -986,10 +1017,10 @@ body {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 5rem 2rem;
+    padding: 3rem 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 3.5rem;
     align-items: center;
 }
 

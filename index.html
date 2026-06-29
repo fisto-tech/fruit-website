@@ -36,11 +36,11 @@
         /* New Creative About Section */
         .creative-about {
             position: relative;
-            padding: 8rem 2rem;
+            padding: 6rem 2rem 3rem 2rem;
             display: flex;
             justify-content: center;
             overflow: hidden;
-            min-height: 80vh;
+            min-height: auto;
         }
 
         .about-bg-shape {
@@ -53,6 +53,12 @@
             object-fit: cover;
             z-index: 1;
             pointer-events: none;
+            animation: bg-slow-pan 25s ease-in-out infinite alternate;
+        }
+
+        @keyframes bg-slow-pan {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.06) rotate(1.5deg); }
         }
 
         .about-leaf-left {
@@ -152,16 +158,6 @@
             height: 500px;
         }
 
-        .collage-glass-panel {
-            position: absolute;
-            width: 350px;
-            height: 450px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            transform: rotate(-5deg);
-        }
 
         .rotating-badge {
             position: absolute;
@@ -193,6 +189,44 @@
             to { transform: rotate(360deg); }
         }
 
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(12px) rotate(-4deg); }
+        }
+        @keyframes float-3 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        .float-anim-1 {
+            animation: float-1 5s ease-in-out infinite;
+        }
+        .float-anim-2 {
+            animation: float-2 6s ease-in-out infinite;
+        }
+        .float-anim-3 {
+            animation: float-3 4s ease-in-out infinite;
+        }
+
+        .about-collage {
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .collage-glass-panel {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            transform: rotate(-5deg);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease;
+        }
+
         .collage-bottle {
             position: relative;
             width: 125%;
@@ -201,6 +235,13 @@
             transform: translateX(-10%);
             z-index: 3;
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
+            animation: float-bottle 6s ease-in-out infinite;
+        }
+
+        @keyframes float-bottle {
+            0%, 100% { transform: translateX(-10%) translateY(0); }
+            50% { transform: translateX(-10%) translateY(-10px); }
         }
 
         .collage-fruit-1 {
@@ -210,6 +251,7 @@
             right: 20px;
             z-index: 4;
             filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3));
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
         }
 
         .collage-fruit-2 {
@@ -219,11 +261,116 @@
             left: 30px;
             z-index: 4;
             filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3));
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
+        }
+
+        .rotating-badge {
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            animation: float-3 4s ease-in-out infinite;
+        }
+
+        /* Hover Interaction on Left Side Collage */
+        .about-collage:hover .collage-glass-panel {
+            transform: rotate(-2deg) scale(1.03);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .about-collage:hover .collage-bottle {
+            animation-play-state: paused;
+            transform: translateX(-8%) translateY(-15px) rotate(-1deg) scale(1.05);
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.4));
+        }
+        .about-collage:hover .collage-fruit-1 {
+            transform: translate(25px, -25px) rotate(12deg) scale(1.15);
+            filter: drop-shadow(0 25px 25px rgba(0,0,0,0.4));
+        }
+        .about-collage:hover .collage-fruit-2 {
+            transform: translate(-25px, 25px) rotate(-12deg) scale(1.15);
+            filter: drop-shadow(0 25px 25px rgba(0,0,0,0.4));
+        }
+        .about-collage:hover .rotating-badge {
+            transform: translate(-10px, -10px) scale(1.05);
+        }
+
+        /* Feature Items Micro-interactions */
+        .feature-item {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: default;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        .feature-item svg {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), stroke 0.3s ease;
+        }
+        .feature-item:hover svg {
+            transform: scale(1.2) rotate(8deg);
+            stroke: #4d571f;
+        }
+
+        /* Permanent Subtle Looping Animations for Features */
+        .feature-item:nth-child(1) svg {
+            animation: subtle-sway 4s ease-in-out infinite alternate;
+        }
+        .feature-item:nth-child(2) svg {
+            animation: subtle-pulse 5s ease-in-out infinite alternate;
+        }
+        .feature-item:nth-child(3) svg {
+            animation: subtle-sway-reverse 4.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtle-sway {
+            0% { transform: rotate(-3deg) translateY(0); }
+            100% { transform: rotate(3deg) translateY(-3px); }
+        }
+        @keyframes subtle-sway-reverse {
+            0% { transform: rotate(3deg) translateY(0); }
+            100% { transform: rotate(-3deg) translateY(-3px); }
+        }
+        @keyframes subtle-pulse {
+            0% { transform: scale(0.96); }
+            100% { transform: scale(1.04); }
         }
 
         .creative-text-panel {
             flex: 1;
             position: relative;
+        }
+
+        /* Override reveal animation on the parent heading container so the word mask reveal works properly */
+        .creative-text-panel h2.section-title.reveal {
+            transform: none;
+            opacity: 1;
+        }
+
+        .title-line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .title-word {
+            display: inline-block;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .title-line:nth-child(1) .title-word {
+            color: #2c3238;
+        }
+
+        .title-line:nth-child(2) .title-word {
+            color: #78862F;
+        }
+
+        .reveal.active .title-word {
+            transform: translateY(0);
+            animation: title-float 6s ease-in-out infinite alternate;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes title-float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(0.4deg); }
+            100% { transform: translateY(3px) rotate(-0.4deg); }
         }
 
         .watermark-text {
@@ -504,90 +651,351 @@
         /* ============================
            CONTACT — Fruit Field Design
            ============================ */
-        .contact-form-panel {
-            background: rgba(15, 10, 5, 0.88) !important;
-            border-radius: 16px !important;
-            padding: 2rem !important;
-            backdrop-filter: blur(16px) !important;
-            border: 1px solid rgba(255,255,255,0.07) !important;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.5) !important;
+        /* ============================
+           CONTACT — Fruit Field Design
+           ============================ */
+        /* ============================
+           CONTACT — Modern Floating Glass Design
+           ============================ */
+        .contact-section {
+            position: relative;
+            background: linear-gradient(135deg, #090e0b 0%, #121713 100%) !important;
+            overflow: hidden;
+            padding: 4.5rem 2rem !important;
         }
 
-        /* Labeled field groups */
-        .cf-field {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+        .contact-overlay {
+            background: linear-gradient(135deg, rgba(9, 14, 11, 0.88) 0%, rgba(18, 23, 19, 0.92) 100%) !important;
+            backdrop-filter: blur(10px);
         }
-        .cf-label {
+
+        .contact-bg-glow-1 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(120, 134, 47, 0.16) 0%, rgba(120, 134, 47, 0) 70%);
+            top: -100px;
+            left: -150px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .contact-bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(237, 30, 121, 0.1) 0%, rgba(237, 30, 121, 0) 70%);
+            bottom: -150px;
+            right: -100px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .contact-modern-wrap {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            align-items: center;
+        }
+
+        /* Left Column Info */
+        .contact-info-panel {
+            color: white;
+        }
+
+        .contact-eyebrow-tag {
             font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 1.5px;
+            letter-spacing: 3px;
+            color: #8DC63F;
             text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-main-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.2rem !important;
+            line-height: 1.15 !important;
+            margin-bottom: 1rem !important;
+            font-weight: 600;
+        }
+
+        .gradient-text-mix {
+            background: linear-gradient(135deg, #FFF 20%, #D4FC79 60%, #8DC63F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .contact-subtitle-text {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        /* Capsule Cards on Left */
+        .contact-capsule-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-pill-card {
             display: flex;
             align-items: center;
-            gap: 6px;
-        }
-        .cf-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-            flex-shrink: 0;
-        }
-
-        /* Base input style */
-        .contact-form input, .contact-form textarea {
-            background: rgba(255,255,255,0.04) !important;
-            border: none !important;
-            border-left: 3px solid rgba(255,255,255,0.15) !important;
-            border-radius: 0 10px 10px 0 !important;
+            gap: 16px;
+            text-decoration: none;
             color: white !important;
-            padding: 0.9rem 1.2rem !important;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 12px 18px;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .contact-pill-card:hover {
+            transform: translateX(6px);
+        }
+
+        .contact-pill-card--green:hover { background: rgba(141, 198, 63, 0.08); border-color: rgba(141, 198, 63, 0.25); }
+        .contact-pill-card--orange:hover { background: rgba(255, 160, 54, 0.08); border-color: rgba(255, 160, 54, 0.25); }
+        .contact-pill-card--pink:hover { background: rgba(255, 107, 107, 0.08); border-color: rgba(255, 107, 107, 0.25); }
+
+        .pill-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .pill-icon--green {
+            background: rgba(141, 198, 63, 0.12);
+            border: 1px solid rgba(141, 198, 63, 0.2);
+            color: #A3E635;
+        }
+        .contact-pill-card--green:hover .pill-icon--green {
+            background: #8DC63F;
+            color: #0c0f0d;
+            border-color: #8DC63F;
+            box-shadow: 0 0 15px rgba(141, 198, 63, 0.35);
+        }
+
+        .pill-icon--orange {
+            background: rgba(255, 160, 54, 0.12);
+            border: 1px solid rgba(255, 160, 54, 0.2);
+            color: #FFA036;
+        }
+        .contact-pill-card--orange:hover .pill-icon--orange {
+            background: #FFA036;
+            color: #0c0f0d;
+            border-color: #FFA036;
+            box-shadow: 0 0 15px rgba(255, 160, 54, 0.35);
+        }
+
+        .pill-icon--pink {
+            background: rgba(255, 107, 107, 0.12);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            color: #FF6B6B;
+        }
+        .contact-pill-card--pink:hover .pill-icon--pink {
+            background: #FF6B6B;
+            color: #0c0f0d;
+            border-color: #FF6B6B;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.35);
+        }
+
+        .pill-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .pill-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .pill-desc {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .pill-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Right Column Form Card */
+        .contact-form-glass-card {
+            --active-flavor-color: #8DC63F;
+            --active-flavor-rgba: rgba(141, 198, 63, 0.12);
+            --active-flavor-shadow: rgba(141, 198, 63, 0.25);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .contact-form-glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Flavor Selector styling */
+        .flavor-selector-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .flavor-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+        }
+
+        .flavor-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .flavor-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 6px 14px;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            outline: none;
+        }
+
+        .flavor-pill img {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .flavor-pill:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .flavor-pill.active {
+            background: var(--active-flavor-rgba);
+            border-color: var(--active-flavor-color);
+            color: white;
+            box-shadow: 0 0 15px var(--active-flavor-shadow);
+        }
+
+        .contact-form-modern {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        /* Modern Floating Input Style */
+        .cf-field-modern {
+            position: relative;
+            width: 100%;
+        }
+
+        .contact-input-modern {
+            width: 100%;
+            padding: 10px 0;
+            background: transparent !important;
+            border: none !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: white !important;
             font-family: 'Poppins', sans-serif !important;
-            font-size: 0.88rem !important;
-            width: 100% !important;
+            font-size: 0.95rem !important;
             transition: all 0.3s ease !important;
-        }
-        .contact-form input::placeholder, .contact-form textarea::placeholder {
-            color: rgba(255,255,255,0.28) !important;
-        }
-        .contact-form input:focus, .contact-form textarea:focus {
             outline: none !important;
-            background: rgba(255,255,255,0.06) !important;
+            border-radius: 0 !important;
         }
 
-        /* Per-field accent colors via left border + focus glow */
-        .cf-field--orange input { border-left-color: #F7931E !important; }
-        .cf-field--orange input:focus { box-shadow: -2px 0 12px rgba(247,147,30,0.3) !important; background: rgba(247,147,30,0.05) !important; }
+        textarea.contact-input-modern {
+            resize: none !important;
+        }
 
-        .cf-field--green input { border-left-color: #8DC63F !important; }
-        .cf-field--green input:focus { box-shadow: -2px 0 12px rgba(141,198,63,0.3) !important; background: rgba(141,198,63,0.05) !important; }
+        .cf-highlight-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--active-flavor-color);
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-        .cf-field--pink input { border-left-color: #ED1E79 !important; }
-        .cf-field--pink input:focus { box-shadow: -2px 0 12px rgba(237,30,121,0.3) !important; background: rgba(237,30,121,0.05) !important; }
+        .contact-input-modern:focus ~ .cf-highlight-bar {
+            width: 100%;
+        }
 
-        .cf-field--purple textarea { border-left-color: #662D91 !important; }
-        .cf-field--purple textarea:focus { box-shadow: -2px 0 12px rgba(102,45,145,0.3) !important; background: rgba(102,45,145,0.05) !important; }
+        .cf-label-modern {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-        .cf-row { display: flex; gap: 1rem; }
-        .cf-row .cf-field { flex: 1; }
+        .contact-input-modern:focus ~ .cf-label-modern,
+        .contact-input-modern:valid ~ .cf-label-modern {
+            top: -16px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--active-flavor-color);
+        }
 
-        .contact-form-fields { display: flex; flex-direction: column; gap: 1.2rem; }
-
-        /* Submit button — bold solid orange */
-        .contact-submit-btn {
-            background: #F7931E !important;
+        /* Submit Button — Professional Green Brand Gradient */
+        .contact-modern-btn {
+            background: linear-gradient(135deg, #78862F 0%, #8DC63F 100%) !important;
             color: white !important;
             border: none !important;
             border-radius: 10px !important;
-            padding: 1rem 1.5rem !important;
+            padding: 0.9rem 2rem !important;
             font-size: 0.9rem !important;
             font-weight: 700 !important;
             letter-spacing: 2px !important;
             text-transform: uppercase !important;
-            box-shadow: 0 8px 24px rgba(247,147,30,0.4) !important;
-            transition: all 0.3s ease !important;
+            box-shadow: 0 10px 25px rgba(120, 134, 47, 0.2) !important;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
             display: flex !important;
             justify-content: center !important;
             align-items: center !important;
@@ -597,23 +1005,40 @@
             position: relative !important;
             overflow: hidden !important;
         }
-        .contact-submit-btn::after {
+
+        .contact-modern-btn::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
             transform: translateX(-100%);
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
-        .contact-submit-btn:hover::after {
+
+        .contact-modern-btn:hover::after {
             transform: translateX(100%);
         }
-        .contact-submit-btn:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 14px 30px rgba(247,147,30,0.5) !important;
+
+        .contact-modern-btn:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 15px 30px rgba(120, 134, 47, 0.35) !important;
         }
-        .contact-submit-btn svg { transition: transform 0.3s ease; }
-        .contact-submit-btn:hover svg { transform: translateX(4px) translateY(-4px); }
+
+        .contact-modern-btn svg { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .contact-modern-btn:hover svg { transform: translateX(6px) translateY(-6px); }
+
+        @media (max-width: 900px) {
+            .contact-modern-wrap {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .pill-row {
+                grid-template-columns: 1fr;
+            }
+            .contact-main-title {
+                font-size: 2.5rem !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -763,6 +1188,8 @@
         <div class="creative-about-container">
             <!-- Left side: Collage -->
             <div class="about-collage reveal">
+                <!-- Glass Panel Background -->
+                <div class="collage-glass-panel"></div>
                 <!-- Rotating Text Ring SVG -->
                 <div class="rotating-badge dark-badge">
                     <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -782,12 +1209,14 @@
                     </div>
                 </div>
                 <img src="./assets/images/about-us-images/abuut-us-bottle-images.webp" alt="FIST-O Bottles" class="collage-bottle">
+                <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Kiwi Decoration" class="collage-fruit-1 float-anim-1">
+                <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry Decoration" class="collage-fruit-2 float-anim-2">
             </div>
 
             <!-- Right side: Content -->
-            <div class="about-content creative-text-panel reveal delay-1">
+            <div class="about-content creative-text-panel">
                 <div class="content-wrapper text-dark">
-                    <div class="icon-accent" style="margin-bottom: 1rem;">
+                    <div class="icon-accent reveal delay-1" style="margin-bottom: 1rem;">
                         <svg viewBox="0 0 24 24" width="40" height="40" stroke="#78862F" stroke-width="1.5" fill="none" style="stroke-linecap: round; stroke-linejoin: round;">
                             <polygon points="12 2 22 7 22 17 12 22 2 17 2 7 12 2"></polygon>
                             <path d="M12 22V12"></path>
@@ -797,11 +1226,14 @@
                             <path d="M12 6v4"></path>
                         </svg>
                     </div>
-                    <h2 class="section-title text-dark" style="color: #2c3238; font-weight: 800; font-size: 3.5rem; line-height: 1.1;">REDEFINING<br><span style="color:#78862F;">FRESHNESS</span></h2>
-                    <p class="text-dark" style="color: #4a4a4a; margin-top: 1.5rem; font-size: 1.05rem;">We believe in the raw, unadulterated power of nature. FIST-O isn't just a juice; it's a vibrant lifestyle choice. Born from the desire to bring authentic taste without compromise.</p>
-                    <p class="text-dark opacity-80" style="color: #4a4a4a; margin-bottom: 2.5rem; font-size: 1.05rem;">Cold-pressed. Never heated. Zero artificial sugars. Experience the ultimate vitality in every single drop.</p>
+                    <h2 class="section-title text-dark reveal delay-2" style="color: #2c3238; font-weight: 800; font-size: 3.5rem; line-height: 1.1;">
+                        <span class="title-line"><span class="title-word">REDEFINING</span></span>
+                        <span class="title-line"><span class="title-word" style="color:#78862F; transition-delay: 0.15s;">FRESHNESS</span></span>
+                    </h2>
+                    <p class="text-dark reveal delay-3" style="color: #4a4a4a; margin-top: 1.5rem; font-size: 1.05rem;">We believe in the raw, unadulterated power of nature. FIST-O isn't just a juice; it's a vibrant lifestyle choice. Born from the desire to bring authentic taste without compromise.</p>
+                    <p class="text-dark opacity-80 reveal delay-3" style="color: #4a4a4a; margin-bottom: 2.5rem; font-size: 1.05rem;">Cold-pressed. Never heated. Zero artificial sugars. Experience the ultimate vitality in every single drop.</p>
                     
-                    <div class="about-actions" style="margin-bottom: 3rem;">
+                    <div class="about-actions reveal delay-4" style="margin-bottom: 3rem;">
                         <button class="primary-btn pulse-btn" style="background: #78862F !important; color: white !important; border-color: #78862F !important; padding: 1rem 2.5rem !important;">Discover Our Story</button>
                         <div class="play-btn-wrapper play-btn-dark">
                             <div class="play-btn" style="border-color: #333;"><svg viewBox="0 0 24 24" width="16" height="16" fill="#333"><path d="M8 5v14l11-7z"></path></svg></div>
@@ -810,17 +1242,38 @@
                     </div>
 
                     <!-- Features -->
-                    <div class="about-features-row" style="display: flex; gap: 2rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 0rem;">
-                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <svg viewBox="0 0 24 24" width="30" height="30" stroke="#78862F" stroke-width="1.5" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <div class="about-features-row reveal delay-5" style="display: flex; gap: 2rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 0rem;">
+                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start;">
+                            <svg viewBox="0 0 24 24" width="35" height="35" stroke="#78862F" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.2rem;">
+                                <!-- Top plate of press -->
+                                <path d="M4 6h16M12 2v4" />
+                                <!-- Bottom plate of press -->
+                                <path d="M4 18h16" />
+                                <!-- Squeezed droplet in center -->
+                                <path d="M12 7c-2 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1-3.5-3-5.5z" fill="rgba(120, 134, 47, 0.15)" />
+                                <!-- Splash marks -->
+                                <path d="M7 13h-1M17 13h1" />
+                            </svg>
                             <span style="font-size: 0.8rem; font-weight: 700; color: #333; line-height: 1.2;">COLD<br>PRESSED</span>
                         </div>
-                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem; border-left: 1px solid rgba(0,0,0,0.1); padding-left: 2rem;">
-                            <svg viewBox="0 0 24 24" width="30" height="30" stroke="#78862F" stroke-width="1.5" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem; border-left: 1px solid rgba(0,0,0,0.1); padding-left: 2rem; align-items: flex-start;">
+                            <svg viewBox="0 0 24 24" width="35" height="35" stroke="#78862F" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.2rem;">
+                                <!-- Isometric Sugar Cube -->
+                                <path d="M12 3L5 7l7 4 7-4-7-4z" />
+                                <path d="M5 7v7l7 4v-7M19 7v7l-7 4" />
+                                <!-- Prohibition line/cross -->
+                                <line x1="3" y1="21" x2="21" y2="3" stroke="#C1272D" stroke-width="2" />
+                            </svg>
                             <span style="font-size: 0.8rem; font-weight: 700; color: #333; line-height: 1.2;">NO ADDED<br>SUGAR</span>
                         </div>
-                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem; border-left: 1px solid rgba(0,0,0,0.1); padding-left: 2rem;">
-                            <svg viewBox="0 0 24 24" width="30" height="30" stroke="#78862F" stroke-width="1.5" fill="none"><path d="M12 2C8 2 4 6 4 11c0 2.5 1 4.5 2.5 6L12 22l5.5-5c1.5-1.5 2.5-3.5 2.5-6 0-5-4-9-8-9zm0 0v10"></path></svg>
+                        <div class="feature-item" style="display: flex; flex-direction: column; gap: 0.5rem; border-left: 1px solid rgba(0,0,0,0.1); padding-left: 2rem; align-items: flex-start;">
+                            <svg viewBox="0 0 24 24" width="35" height="35" stroke="#78862F" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.2rem;">
+                                <!-- Large Droplet -->
+                                <path d="M12 3v0c-4.4 4.4-6 7.5-6 10.5a6 6 0 0 0 12 0c0-3-1.6-6.1-6-10.5z" />
+                                <!-- Elegant Leaf inside -->
+                                <path d="M12 10c1.5 1.5 2 3.5 1.5 4.5s-2.5 1-3.5-.5S8.5 10.5 9 9.5s2.5-1 3 0.5z" fill="rgba(120, 134, 47, 0.2)" />
+                                <path d="M9 14.5l3-3" />
+                            </svg>
                             <span style="font-size: 0.8rem; font-weight: 700; color: #333; line-height: 1.2;">RICH IN<br>NUTRIENTS</span>
                         </div>
                     </div>
@@ -1170,76 +1623,110 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
+        <!-- Organic Background Glows -->
+        <div class="contact-bg-glow-1"></div>
+        <div class="contact-bg-glow-2"></div>
+        
         <video autoplay muted loop playsinline class="contact-bg-video">
-            <source src="./assets/videos/orange-fruit.mp4" type="video/mp4">
+            <source src="./assets/videos/avacado-fruit.mp4" type="video/mp4">
         </video>
         <div class="contact-overlay"></div>
-        <div class="contact-inner">
-            <!-- Left Info Panel -->
-            <div class="contact-info reveal">
-                <span class="contact-eyebrow">Get In Touch</span>
-                <h2>Let's Talk<br><span style="color: #F7931E;">Freshness.</span></h2>
-                <p>Have questions about our juices, want to collaborate, or just want to say hello? We'd love to hear from you.</p>
-                <ul class="contact-details">
-                    <li>
-                        <span class="contact-detail-icon">
+        <div class="contact-modern-wrap">
+            <!-- Left Info Side -->
+            <div class="contact-info-panel reveal">
+                <span class="contact-eyebrow-tag">CONNECT WITH US</span>
+                <h2 class="contact-main-title">Let's start a <br><span class="gradient-text-mix">fresh conversation.</span></h2>
+                <p class="contact-subtitle-text">Got questions about our organic blends, want to stock our juices, or just want to talk freshness? Send us a message.</p>
+                
+                <div class="contact-capsule-grid">
+                    <a href="https://maps.google.com" target="_blank" class="contact-pill-card contact-pill-card--green">
+                        <div class="pill-icon pill-icon--green">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        </span>
-                        42, Green Valley Road, Kerala — 682020
-                    </li>
-                    <li>
-                        <span class="contact-detail-icon">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16l-.08.92z"></path></svg>
-                        </span>
-                        +91 98765 43210
-                    </li>
-                    <li>
-                        <span class="contact-detail-icon">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        </span>
-                        hello@fisto.in
-                    </li>
-                </ul>
+                        </div>
+                        <div class="pill-info">
+                            <span class="pill-title">OUR VALLEY</span>
+                            <span class="pill-desc">42, Green Valley Road, Kerala — 682020</span>
+                        </div>
+                    </a>
+                    
+                    <div class="pill-row">
+                        <a href="tel:+919876543210" class="contact-pill-card contact-pill-card--orange">
+                            <div class="pill-icon pill-icon--orange">
+                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16l-.08.92z"></path></svg>
+                            </div>
+                            <div class="pill-info">
+                                <span class="pill-title">HOTLINE</span>
+                                <span class="pill-desc">+91 98765 43210</span>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:hello@fisto.in" class="contact-pill-card contact-pill-card--pink">
+                            <div class="pill-icon pill-icon--pink">
+                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div class="pill-info">
+                                <span class="pill-title">EMAIL DIRECT</span>
+                                <span class="pill-desc">hello@fisto.in</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <!-- Right Form Panel -->
-            <div class="contact-form-panel reveal delay-2">
-                <form class="contact-form" onsubmit="return false;">
-                    <div class="contact-form-fields">
-                        <!-- Row: Name + Email -->
-                        <div class="cf-row">
-                            <div class="cf-field cf-field--orange">
-                                <label class="cf-label" style="color: #F7931E;">
-                                    <span class="cf-dot" style="background:#F7931E;"></span> Name
-                                </label>
-                                <input type="text" placeholder="Your Name" required>
-                            </div>
-                            <div class="cf-field cf-field--green">
-                                <label class="cf-label" style="color: #8DC63F;">
-                                    <span class="cf-dot" style="background:#8DC63F;"></span> Email
-                                </label>
-                                <input type="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <!-- Subject -->
-                        <div class="cf-field cf-field--pink">
-                            <label class="cf-label" style="color: #ED1E79;">
-                                <span class="cf-dot" style="background:#ED1E79;"></span> Subject
-                            </label>
-                            <input type="text" placeholder="What's this about?">
-                        </div>
-                        <!-- Message -->
-                        <div class="cf-field cf-field--purple">
-                            <label class="cf-label" style="color: #9B59D6;">
-                                <span class="cf-dot" style="background:#9B59D6;"></span> Message
-                            </label>
-                            <textarea placeholder="Tell us about your order, query or idea..." rows="4" required></textarea>
-                        </div>
-                        <!-- Submit -->
-                        <button type="submit" class="contact-submit-btn">
-                            Send Message
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            
+            <!-- Right Form Side -->
+            <div class="contact-form-glass-card reveal delay-2">
+                <!-- Flavor Selector -->
+                <div class="flavor-selector-wrap">
+                    <span class="flavor-label">PICK A FLAVOR TO INQUIRE:</span>
+                    <div class="flavor-pills">
+                        <button class="flavor-pill active" type="button" data-flavor="kiwi" data-color="#8DC63F" data-rgba="141,198,63">
+                            <img src="./assets/images/card-images/kiwi-fruit.webp" alt="Kiwi"> Kiwi
+                        </button>
+                        <button class="flavor-pill" type="button" data-flavor="strawberry" data-color="#FF6B6B" data-rgba="255,107,107">
+                            <img src="./assets/images/card-images/strawberry-fruit.webp" alt="Strawberry"> Strawberry
+                        </button>
+                        <button class="flavor-pill" type="button" data-flavor="mango" data-color="#FFA036" data-rgba="255,160,54">
+                            <img src="./assets/images/card-images/mango-fruit.webp" alt="Mango"> Mango
+                        </button>
+                        <button class="flavor-pill" type="button" data-flavor="grape" data-color="#A78BFA" data-rgba="167,139,250">
+                            <img src="./assets/images/card-images/grape-fruit.webp" alt="Grape"> Grapes
                         </button>
                     </div>
+                </div>
+
+                <form class="contact-form-modern" onsubmit="return false;">
+                    <!-- Floating field group Name -->
+                    <div class="cf-field-modern">
+                        <input type="text" required class="contact-input-modern">
+                        <span class="cf-highlight-bar"></span>
+                        <label class="cf-label-modern">Your Name</label>
+                    </div>
+                    
+                    <!-- Floating field group Email -->
+                    <div class="cf-field-modern">
+                        <input type="email" required class="contact-input-modern">
+                        <span class="cf-highlight-bar"></span>
+                        <label class="cf-label-modern">Your Email</label>
+                    </div>
+                    
+                    <!-- Floating field group Subject -->
+                    <div class="cf-field-modern">
+                        <input type="text" id="contact-subject" required class="contact-input-modern" value="Exploring our Kiwi blends">
+                        <span class="cf-highlight-bar"></span>
+                        <label class="cf-label-modern">Subject</label>
+                    </div>
+                    
+                    <!-- Floating field group Message -->
+                    <div class="cf-field-modern">
+                        <textarea required class="contact-input-modern" rows="3"></textarea>
+                        <span class="cf-highlight-bar"></span>
+                        <label class="cf-label-modern">Your Message</label>
+                    </div>
+                    
+                    <button type="submit" class="contact-modern-btn">
+                        SEND MESSAGE
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
                 </form>
             </div>
         </div>
@@ -1529,6 +2016,50 @@ var bestsellersSwiper = new Swiper(".bestsellers-slider", {
                 });
             }
         });
+
+        // 3D Tilt Parallax Effect for Left Side Collage
+        const aboutCollage = document.querySelector('.about-collage');
+        if (aboutCollage) {
+            aboutCollage.addEventListener('mousemove', (e) => {
+                const rect = aboutCollage.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const angleX = (yc - y) / 12;
+                const angleY = (x - xc) / 12;
+                aboutCollage.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            aboutCollage.addEventListener('mouseleave', () => {
+                aboutCollage.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        }
+
+        // Contact Form Interactive Flavor Selector
+        const flavorPills = document.querySelectorAll('.flavor-pill');
+        const contactFormCard = document.querySelector('.contact-form-glass-card');
+        const subjectInput = document.getElementById('contact-subject');
+
+        if (flavorPills && contactFormCard && subjectInput) {
+            flavorPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    flavorPills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+
+                    const color = pill.getAttribute('data-color');
+                    const rgba = pill.getAttribute('data-rgba');
+                    const flavor = pill.getAttribute('data-flavor');
+
+                    // Apply CSS variables to container
+                    contactFormCard.style.setProperty('--active-flavor-color', color);
+                    contactFormCard.style.setProperty('--active-flavor-rgba', `rgba(${rgba}, 0.12)`);
+                    contactFormCard.style.setProperty('--active-flavor-shadow', `rgba(${rgba}, 0.25)`);
+
+                    // Update preset subject line
+                    subjectInput.value = `Exploring our ${flavor.charAt(0).toUpperCase() + flavor.slice(1)} blends`;
+                });
+            });
+        }
     </script>
     
     <!-- Custom Cursor -->
